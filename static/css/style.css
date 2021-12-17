@@ -1,3 +1,4 @@
+/* Navigation Bar */
 .navbar-main {
     background-color: #b6ccfe;
 }
@@ -6,6 +7,7 @@
     color: #463f3a;
 }
 
+/* Register Page */
 .register-content {
     background-color: #b6ccfe;
     margin-top: 7%;
@@ -14,9 +16,15 @@
 
 .card .card-action { 
     padding-bottom: 50px;
+    text-align: center;
     border-top: none;
 }
 
+/* General Adjustments */
 .row {
     margin-bottom: 0px;
+}
+
+.flashes {
+    line-height: 3;
 }

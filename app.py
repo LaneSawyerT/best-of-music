@@ -36,6 +36,34 @@ def get_artist():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        # Check if email already exists in db
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+        
+        if existing_email:
+            flash("Email already used")
+            return redirect(url_for("register"))
+
+        # Check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        register = {
+            "email": request.form.get("email").lower(),
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        # Put the new user into a 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+
     return render_template("register.html")
 
 
