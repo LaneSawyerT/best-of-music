@@ -1,0 +1,22 @@
+.navbar-main {
+    background-color: #b6ccfe;
+}
+
+.navbar-main a {
+    color: #463f3a;
+}
+
+.register-content {
+    background-color: #b6ccfe;
+    margin-top: 7%;
+    margin-bottom: -15px;
+}
+
+.card .card-action { 
+    padding-bottom: 50px;
+    border-top: none;
+}
+
+.row {
+    margin-bottom: 0px;
+}
