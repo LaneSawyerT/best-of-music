@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-
-    {% for artist in artist %}
-        {{ artist.artist_name }}<br>
-        {{ artist.album_name }}<br>
-        {{ artist.album_year }}<br>
+    {% for name, albums in artists.items() %}
+        {{ name }}<br>
+        {% for album in albums %}
+            {{ album }}<br>
+        {% endfor %}
     {% endfor %}
 
 {% endblock %}

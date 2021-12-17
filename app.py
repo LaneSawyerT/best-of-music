@@ -21,9 +21,16 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_artist")
 def get_artist():
-    artists = mongo.db.artist.find()
-    return render_template("upload.html", artists=artists)
+    artists_combined = {}
+    artists = mongo.db.artists.find()
+    for artist in artists:
+        artists_combined[artist["artist_name"]] = [] 
+        albums = mongo.db.albums.find({"artist_id": artist["_id"]})
+        for album in albums:
+            artists_combined[artist["artist_name"]].append(album["album_name"])
 
+    print(artists_combined)
+    return render_template("upload.html", artists=artists_combined)
 
 
 if __name__ == "__main__":
