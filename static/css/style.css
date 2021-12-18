@@ -28,3 +28,13 @@
 .flashes {
     line-height: 3;
 }
+
+/* Footer */
+.page-footer {
+    margin-top: 5%;
+    background-color: #b6ccfe;
+}
+
+.page-footer .container {
+    color: #463f3a;
+}
