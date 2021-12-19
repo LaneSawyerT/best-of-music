@@ -31,7 +31,7 @@ def get_artist():
             artists_combined[artist["artist_name"]].append(album["album_name"])
 
     print(artists_combined)
-    return render_template("upload.html", artists=artists_combined)
+    return render_template("index.html", artists=artists_combined)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -114,6 +114,12 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+    # Upload an album
+    return render_template("upload.html")
 
 
 if __name__ == "__main__":

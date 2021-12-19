@@ -11,13 +11,23 @@
 .register-content {
     background-color: #b6ccfe;
     margin-top: 7%;
-    margin-bottom: -15px;
+    background-color: #b6ccfe;
 }
 
 .card .card-action { 
     padding-bottom: 50px;
     text-align: center;
     border-top: none;
+}
+
+/* Upload Page */
+.upload-content {
+    background-color: #b6ccfe;
+    margin-top: 7%;
+}
+
+#textarea1 {
+    min-height: 6rem;
 }
 
 /* General Adjustments */
