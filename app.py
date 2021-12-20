@@ -119,7 +119,14 @@ def logout():
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     # Upload an album
-    return render_template("upload.html")
+    artists = mongo.db.artists.find().sort("artist_name", 1)
+
+    return render_template("upload.html", artists=artists)
+
+
+@app.route("/upload_artist")
+def upload_artist():
+    return render_template("upload_artist.html")
 
 
 if __name__ == "__main__":
