@@ -34,6 +34,18 @@ def get_artist():
     return render_template("index.html", artists=artists_combined)
 
 
+@app.route("/get_album")
+def get_album():
+    album_combined = {}
+    album = mongo.db.albums.find()
+    for album in albums:
+        album_combined[album["album_name"]] = []
+        albums = mongo.db.albums.find({"rating_id": rating["_id"]}, {"review_id": review["_id"]})
+        for album in albums:
+            artists_combined[album["rating"]].append(album["rating"])
+
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -120,6 +132,27 @@ def logout():
 def upload():
     # Upload an album
     artists = mongo.db.artists.find().sort("artist_name", 1)
+    if request.method == "POST":
+        album = {
+            "album_name": request.form.get("album_name"),
+            "artist_id": request.form.get("artist_name")
+        }
+        mongo.db.albums.insert_one(album)
+
+        albums = mongo.db.albums.find_one(album)
+
+        rating = {
+            "rating": request.form.get("rating"),
+            "album_id": albums["_id"]
+        }
+        mongo.db.ratings.insert_one(rating)
+
+
+        review = {
+            "review": request.form.get("review"),
+            "album_id": albums["_id"]
+        }
+        mongo.db.reviews.insert_one(review)
 
     return render_template("upload.html", artists=artists)
 
