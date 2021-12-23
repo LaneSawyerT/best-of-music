@@ -4,53 +4,48 @@
 <div class="row">
     <div class="col s12">
         <div class="card upload-content">
-            <div class="row">
-                <form class="col s12" method="POST" action="">
-                    <div class="row">
-                        <!-- Album Name -->
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="first_name" name="album_name" type="text" class="validate">
-                            <label for="album_name">Enter an Album</label> </div>
-                    </div>
-                    <div class="row">
-                        <!-- Image -->
-                        <div class="input-field col s12">
-                            <input placeholder="Placeholder" id="first_name" name="album_name" type="text" class="validate">
-                            <label for="album_name">Enter an Album</label> </div>
+            <div class="card-content">
+                <span class="card-title upload-heading">Upload a New Artist</span>
+                <div class="row">
+                    <form class="col s12" method="POST" action="">
+                        <div class="row">
+                            <!-- Artist Name -->
+                            <div class="input-field col s10 offset-s1">
+                                <i class="fas fa-user-plus prefix light-grey-text text-darken-4"></i> 
+                                <input placeholder="Album Name" id="album_name" name="album_name" type="text"
+                                    class="validate" minlength="1" maxlength="30" required>
+                                <label for="album_name">Enter an Artist</label> </div>
                         </div>
+                            <div class="row">
+                                <!-- Image URL -->
+                                <div class="input-field col s10 offset-s1">
+                                    <i class="fas fa-images prefix light-grey-text text-darken-4"></i> 
+                                    <input placeholder="Album Name" id="album_name" name="album_name" type="text"
+                                        class="validate" minlength="15" maxlength="50" required>
+                                    <label for="album_name">Enter Artist Image URL</label> </div>
+                            </div>
+                            <div class="row">
+                                <!-- Artist Description -->
+                                <div class="input-field col s10 offset-s1">
+                                    <i class="fas fa-comment prefix light-grey-text text-darken-4"></i> 
+                                    <input placeholder="Album Name" id="album_name" name="album_name" type="text"
+                                        class="validate" minlength="5" maxlength="50">
+                                    <label for="album_name">Enter a description(optional)</label> </div>
+                            </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row submit-button">
+                    <div class="card-action">
+                        <button class="btn-large waves-effect waves-light" type="submit" name="action">
+                            Submit
+                        </button>
                     </div>
-                    <div class="row">
-                        <!-- Rating -->
-                        <div class="input-field col s6">
-                            <form action="#">
-                                <p class="range-field">
-                                    <input type="range" id="test5" min="0" max="100" />
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="review" name="review" class="materialize-textarea"
-                                data-length="120"></textarea>
-                            <label for="review">Enter a review(optional)</label>
-                        </div>
-                    </div>
+                </div>
                 </form>
             </div>
-            <!-- Submit Button -->
-            <div class="row submit-button">
-                <div class="card-action">
-                    <button class="btn-large waves-effect waves-light" type="submit" name="action">
-                        Submit
-                    </button>
-                </div>
-            </div>
-            </form>
-        </div>
 
+        </div>
     </div>
-</div>
 </div>
 
 {% endblock %}

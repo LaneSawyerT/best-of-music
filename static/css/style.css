@@ -27,6 +27,24 @@
     padding-top: 5%;
 }
 
+/* Upload New Artist */
+.upload-heading {
+    padding-bottom: 5%;
+    text-align: center;
+}
+
+.label-heading {
+    text-align:center;
+}
+
+.input-field label {
+    color: #2bbbad;
+}
+
+input {
+    color: #463f3a;
+}
+
 /* General Adjustments */
 .row {
     margin-bottom: 0px;
