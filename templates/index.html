@@ -1,10 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="parallax-container hide-on-med-and-down">
+    <div class="parallax "><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}></div>
+
+    <div class="row mainpage-register">
+        <div class="col">
+            <div class="card register-content">
+                <div class="card-content">
+                    <span class="card-title center "> Sign up today and start rating!<br>
+                        <a href="{{ url_for('register') }}"> Click here</a> to get started
+                    </span>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- For tablet /mobile sizes-->
+<div class="show-on-medium-and-down hide-on-large-only">
+    <div class="tablet-image"><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}></div>
+    
+</div>
+
+<div class="section white">
+    <div class="row container">
+        <h2 class="header">Top Rated Albums</h2>
+        <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this
+            case, is moved at a different speed than the foreground content while scrolling.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section white">
+        <div class="row container">
+            <h2 class="header">Recently Upload Albums</h2>
+            <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in
+                this case, is moved at a different speed than the foreground content while scrolling.</p>
+        </div>
+    </div>
+    <!--
     {% for name, albums in artists.items() %}
         {{ name }}<br>
         {% for album in albums %}
             {{ album }}<br>
         {% endfor %}
     {% endfor %}
-
-{% endblock %}
+-->
+    {% endblock %}

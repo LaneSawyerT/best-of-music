@@ -3,8 +3,39 @@
     background-color: #b6ccfe;
 }
 
+nav .nav-wrapper {
+    height: 115%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
 .navbar-main a {
     color: #463f3a;
+}
+
+.bom-logo img {
+    height: 63px;
+    margin-left: 30%;
+    margin-top: 2%;
+}
+
+/* Index page*/
+.parallax-container {
+    margin-left: -25%;
+    height: 600px;
+    width: 1475px;
+    object-fit: cover;
+}
+
+.mainpage-register {
+    position: absolute;
+    bottom: 20%;
+    right: 10%;
+    opacity: 0.7;
+}
+
+.tablet-image {
+    margin-left: -12%;
+    width: 121%;
 }
 
 /* Register Page */
@@ -63,3 +94,5 @@ input {
 .page-footer .container {
     color: #463f3a;
 }
+
+/* Media Queries */

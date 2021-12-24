@@ -20,7 +20,6 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_artist")
 def get_artist():
     artists_combined = {}
     artists = mongo.db.artists.find()
@@ -160,6 +159,12 @@ def upload():
 @app.route("/upload_artist")
 def upload_artist():
     return render_template("upload_artist.html")
+
+
+@app.route("/rankings")
+def rankings():
+    return render_template("rankings.html")
+
 
 
 if __name__ == "__main__":
