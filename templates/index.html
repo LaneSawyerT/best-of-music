@@ -8,7 +8,11 @@
             <div class="card register-content">
                 <div class="card-content">
                     <span class="card-title center "> Sign up today and start rating!<br>
+                        {% if session.user %}
+                        <a href="{{ url_for('rankings') }}"> Click here</a> to get started
+                        {% else %}
                         <a href="{{ url_for('register') }}"> Click here</a> to get started
+                        {% endif %}
                     </span>
                 </div>
                 </form>

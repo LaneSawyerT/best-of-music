@@ -18,7 +18,12 @@
         <nav>
             <!-- Main Navigation Bar-->
             <div class="nav-wrapper navbar-main">
-                <a href="/" class="brand-logo bom-logo"><img class="responsive-img" src={{url_for('static', filename='images/logo.jpg')}}></a>
+                <a href="/" class="brand-logo bom-logo show-on-large hide-on-med-and-down"><img class="responsive-img"
+                        src={{url_for('static', filename='images/logo.jpg')}}></a>
+                <a href="/" class="brand-logo bom-logo-tablet show-on-medium hide-on-small-only hide-on-large-only"><img
+                        class="responsive-img" src={{url_for('static', filename='images/logo.jpg')}}></a>
+                <a href="/" class="brand-logo bom-logo-phone show-on-small hide-on-med-and-up"><img
+                        class="responsive-img" src={{url_for('static', filename='images/logo.jpg')}}></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/">Home</a></li>
@@ -60,9 +65,10 @@
             <div class="row">
                 <div class="col s12 center">
                     <h5 class="">Connect With Us</h5>
-                    <h2><i class="fab fa-facebook light-grey-text text-darken-4"></i>
-                        <i class="fab fa-twitter light-grey-text text-darken-4"></i>
-                        <i class="fab fa-instagram light-grey-text text-darken-4"></i></h2>
+                    <h2>
+                        <a href="https://www.facebook.com"><i class="fab fa-facebook light-grey-text text-darken-4"></i></a>
+                        <a href="https://www.twitter.com"><i class="fab fa-twitter light-grey-text text-darken-4"></i></a>
+                        <a href="https://www.instagram.com"><i class="fab fa-instagram light-grey-text text-darken-4"></i></a></h2>
                     <p class="">Follow us on social media.</p>
                 </div>
             </div>
@@ -72,7 +78,6 @@
 
                 © Copyright Limited 2021. All Rights Reserved
 
-                <a class="" href="#!">More Links</a>
             </div>
         </div>
     </footer>

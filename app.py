@@ -48,6 +48,10 @@ def get_album():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Code by the developer.
+    Registers the user and send data to db
+    """
     if request.method == "POST":
         # Check if email already exists in db
         existing_email = mongo.db.users.find_one(
@@ -82,6 +86,11 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Code by the developer.
+    Log the user in and send checks information inserted to db
+    """
+
     if request.method == "POST":
         # Checks to see if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -110,7 +119,11 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # Grab the users username from db
+    """
+    Code by the developer.
+    Grabs the username from db 
+    """
+
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
@@ -122,7 +135,10 @@ def profile(username):
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookie
+    """
+    Code by the developer.
+    Removes user from session
+    """
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
@@ -130,12 +146,17 @@ def logout():
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
-    # Upload an album
+    """
+    Code by the developer.
+    Uploads an album and sends data to db
+    """
+
     artists = mongo.db.artists.find().sort("artist_name", 1)
     if request.method == "POST":
         album = {
             "album_name": request.form.get("album_name"),
-            "artist_id": request.form.get("artist_name")
+            "artist_id": request.form.get("artist_name"),
+            "image_url": request.form.get("image_url")
         }
         mongo.db.albums.insert_one(album)
 
@@ -146,7 +167,6 @@ def upload():
             "album_id": albums["_id"]
         }
         mongo.db.ratings.insert_one(rating)
-
 
         review = {
             "review": request.form.get("review"),
@@ -164,6 +184,10 @@ def upload_artist():
 
 @app.route("/rankings")
 def rankings():
+    """
+    Code by the developer.
+    Compiles information input by all users and puts them ranked
+    """
     album_combined = []
     albums = mongo.db.albums.find()
 

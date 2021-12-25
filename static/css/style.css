@@ -5,7 +5,7 @@
 
 nav .nav-wrapper {
     height: 115%;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .navbar-main a {
@@ -16,6 +16,18 @@ nav .nav-wrapper {
     height: 63px;
     margin-left: 30%;
     margin-top: 2%;
+}
+
+.bom-logo-tablet img {
+    height: 55px;
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.bom-logo-phone img {
+    height: 55px;
+    margin-left: 15%;
+    margin-top: 3%;
 }
 
 /* Index page*/
@@ -45,7 +57,7 @@ nav .nav-wrapper {
     background-color: #b6ccfe;
 }
 
-.card .card-action { 
+.card .card-action {
     padding-bottom: 50px;
     text-align: center;
     border-top: none;
@@ -65,19 +77,28 @@ nav .nav-wrapper {
 }
 
 .label-heading {
-    text-align:center;
+    text-align: center;
 }
 
 .input-field label {
     color: #463f3a;
 }
 
-input[type="range"] + .thumb {
+input[type="range"]+.thumb {
     background-color: #463f3a;
 }
 
 input[type="range"] {
     border: 1px solid #463f3a;
+}
+
+/* Rankings Page */
+.rankings-content {
+    background-color: #b6ccfe;
+}
+
+.info-button {
+    margin-bottom: 5%;
 }
 
 /* General Adjustments */
@@ -100,3 +121,9 @@ input[type="range"] {
 }
 
 /* Media Queries */
+
+@media only screen and (max-width: 1024px) {
+    nav .brand-logo {
+        left: 15%;
+    }
+}
