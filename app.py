@@ -1,3 +1,4 @@
+from bson import ObjectId
 import os
 from flask import (
     Flask, flash, render_template,
@@ -163,8 +164,50 @@ def upload_artist():
 
 @app.route("/rankings")
 def rankings():
-    return render_template("rankings.html")
+    album_combined = []
+    albums = mongo.db.albums.find()
 
+    index = 0
+
+    for album in albums:
+        album_combined.append({})
+        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "number_of_ratings": 0}
+        artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
+        album_combined[index][album["album_name"]]["artist_name"] = artist["artist_name"]
+        ratings = mongo.db.ratings.find({"album_id": album["_id"]})
+        count = 0
+        running_total = 0
+
+        for rating in ratings:
+            running_total += int(rating["rating"]) 
+            count+=1
+
+        average = running_total/count
+        album_combined[index][album["album_name"]]["rating"] = average
+        album_combined[index][album["album_name"]]["number_of_ratings"] = count
+        index += 1
+
+
+    page_num = int(request.args["page"]) if "page" in request.args else 1
+
+    num_per_page = 5
+
+    is_paginated = True if len(album_combined) > num_per_page else False
+
+    if len(album_combined) % num_per_page == 0:
+        num_pages = int(len(album_combined) / num_per_page)
+    else:
+        num_pages = int((len(album_combined) / num_per_page) + 1)
+
+    if num_pages > page_num:
+        page_num = 1
+
+    start = (num_per_page * page_num) - num_per_page
+    end = (num_per_page * page_num) - 1
+
+    recordset = album_combined[start:end]
+
+    return render_template("rankings.html", is_paginated=is_paginated, active_page=page_num, data=recordset, num_pages=num_pages)
 
 
 if __name__ == "__main__":

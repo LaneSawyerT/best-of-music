@@ -20,9 +20,7 @@ nav .nav-wrapper {
 
 /* Index page*/
 .parallax-container {
-    margin-left: -25%;
     height: 600px;
-    width: 1475px;
     object-fit: cover;
 }
 
@@ -34,9 +32,11 @@ nav .nav-wrapper {
 }
 
 .tablet-image {
-    margin-left: -12%;
-    width: 121%;
+    max-width: 130%;
+    background-size: cover;
+    overflow-x: hidden;
 }
+
 
 /* Register Page */
 .register-content {
@@ -69,11 +69,15 @@ nav .nav-wrapper {
 }
 
 .input-field label {
-    color: #2bbbad;
+    color: #463f3a;
 }
 
-input {
-    color: #463f3a;
+input[type="range"] + .thumb {
+    background-color: #463f3a;
+}
+
+input[type="range"] {
+    border: 1px solid #463f3a;
 }
 
 /* General Adjustments */

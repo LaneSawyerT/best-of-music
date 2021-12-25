@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="parallax-container hide-on-med-and-down">
-    <div class="parallax "><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}></div>
+    <div class="parallax"><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}></div>
 
     <div class="row mainpage-register">
         <div class="col">
@@ -36,12 +36,4 @@
                 this case, is moved at a different speed than the foreground content while scrolling.</p>
         </div>
     </div>
-    <!--
-    {% for name, albums in artists.items() %}
-        {{ name }}<br>
-        {% for album in albums %}
-            {{ album }}<br>
-        {% endfor %}
-    {% endfor %}
--->
     {% endblock %}
