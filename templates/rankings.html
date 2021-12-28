@@ -14,20 +14,24 @@
                     <span class="card-title">{{ album }}</span>
                     <p>{{ info["artist_name"] }}</p>
                     <p>{{ info["rating"] }}</p>
+                    <img class="materialboxed" width="150" src="{{ info['image_url'] }}">
                 </div>
 
                 <!-- Modal Trigger -->
                 <div class="center-align">
-                <a class="waves-effect waves-light btn modal-trigger info-button" href="#modal1">Info</a>
+                <a class="waves-effect waves-light btn modal-trigger info-button" href="#{{ info['album_id'] }}">Info</a>
             </div>
                 <!-- Modal Structure -->
-                <div id="modal1" class="modal">
+                <div id="{{ info['album_id'] }}" class="modal">
                     <div class="modal-content">
                         {% for album, info in d.items() %}
                         <h4>{{ album }}</h4>
                         <p>{{ info["artist_name"] }}</p>
                         <p>{{ info["rating"] }}</p>
+                        <p>{{ info["review"] }}</p>
+                        <img class="materialboxed" width="150" src="{{ info['image_url'] }}">
                         {% endfor %}
+                        
                     </div>
                     <form>
                         <div class="row">
@@ -57,6 +61,10 @@
             </div>
         </div>
         {% endfor %}
+        {% if loop.index is divisibleby 3 %}
+        </div>
+        <div class="row">
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -68,19 +76,19 @@
     {% if active_page == 1 %}
     <li class="disabled"><a href="#!"><i class="fas fa-chevron-left"></i></a></li>
     {% else %}
-    <li><a href="/?page={{ active_page - 1 }}"><i class="fas fa-chevron-right"></i></a></li>
+    <li><a href="?page={{ active_page - 1 }}"><i class="fas fa-chevron-left"></i></a></li>
     {% endif %}
     {% for n in range(num_pages) %}
     {% if active_page == n + 1 %}
-    <li class="active"><a href="/?page={{ n + 1 }}">{{ n + 1 }}</a></li>
+    <li class="active"><a href="?page={{ n + 1 }}">{{ n + 1 }}</a></li>
     {% else %}
-    <li class="waves-effect"><a href="/?page={{ n + 1 }}">{{ n + 1 }}</a></li>
+    <li class="waves-effect"><a href="?page={{ n + 1 }}">{{ n + 1 }}</a></li>
     {% endif %}
     {% endfor %}
     {% if active_page == num_pages %}
     <li class="disabled"><a href="#!"><i class="fas fa-chevron-right"></i></a></li>
     {% else %}
-    <li><a href="/?page={{ active_page + 1 }}"><i class="fas fa-chevron-right"></i></a></li>
+    <li><a href="?page={{ active_page + 1 }}"><i class="fas fa-chevron-right"></i></a></li>
     {% endif %}
 </ul>
 {% endif %}

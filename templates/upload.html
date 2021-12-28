@@ -10,12 +10,12 @@
                     <div class="row">
                     </div>
                     <div class="row">
-                        <form class="col s12" method="POST" action="{{ url_for('upload') }}">
+                        <form class="col s12" method="POST" action="">
                             <div class="row">
                                 <!-- Artist Name Dropdown desktop/tablet-->
                                 <div class="input-field col s5 offset-s1 hide-on-small-only">
                                     <i class="fas fa-guitar prefix light-grey-text text-darken-4"></i>
-                                    <select id="artist_name" name="artist_name" class="validate" required>
+                                    <select id="artist_name" name="artist_name">
                                         <option value="" disabled selected>Choose an Artist</option>
                                         {% for artist in artists %}
                                         <option value="{{ artist._id }}"> {{ artist.artist_name }} </option>
@@ -26,7 +26,7 @@
                                 <!-- Artist Name Dropdown mobile-->
                                 <div class="input-field hide-on-med-and-up show-on-small">
                                     <i class="fas fa-guitar prefix light-grey-text text-darken-4"></i>
-                                    <select id="artist_name" name="artist_name" class="validate" required>
+                                    <select id="artist_name" name="artist_name" class="validate">
                                         <option value="" disabled selected>Choose an Artist</option>
                                         {% for artist in artists %}
                                         <option value="{{ artist._id }}"> {{ artist.artist_name }} </option>
@@ -56,47 +56,47 @@
                                     <i class="fas fa-compact-disc prefix light-grey-text text-darken-4"></i>
 
                                     <input placeholder="Album Name" id="album_name" name="album_name" type="text"
-                                        class="validate" minlength="1" maxlength="50" required>
+                                        class="validate" minlength="1" maxlength="20" required>
                                     <label for="album_name">Enter an Album</label> </div>
                             </div>
                             <div class="row">
                                 <!-- Image -->
                                 <div class="input-field col s10 offset-s1">
                                     <i class="fas fa-images prefix light-grey-text text-darken-4"></i>
-                                    <input placeholder="Image URL" id="image_url" name="image_url" type="text"
-                                        class="validate">
+                                    <input placeholder="Image URL" id="image_url" name="image_url" type="text">
                                     <label for="image_url">Enter Image URL</label> </div>
                             </div>
 
-                    <div class="row">
-                        <!-- Rating -->
-                        <div class="input-field col s6 offset-s3">
-                            <p class="range-field">
-                                <label for="range" class="label-heading">Rate</label>
-                                <input type="range" name="rating" id="test5" min="0" max="100" required />
-                            </p>
+                            <div class="row">
+                                <!-- Rating -->
+                                <div class="input-field col s6 offset-s3">
+                                    <p class="range-field">
+                                        <label for="range" class="label-heading">Rate</label>
+                                        <input type="range" name="rating" id="test5" min="0" max="100" required />
+                                    </p>
 
-                        </div>
-                    </div>
+                                </div>
+                            </div>
 
-                    <div class="row">
-                        <div class="input-field col s10 offset-s1">
-                            <i class="fas fa-comment prefix light-grey-text text-darken-4"></i>
-                            <textarea id="review" name="review" class="materialize-textarea"
-                                data-length="120"></textarea>
-                            <label for="review">Enter a review(optional)</label>
-                        </div>
-                    </div>
+                            <div class="row">
+                                <div class="input-field col s10 offset-s1">
+                                    <i class="fas fa-comment prefix light-grey-text text-darken-4"></i>
+                                    <textarea id="review" name="review" class="materialize-textarea"
+                                        data-length="120"></textarea>
+                                    <label for="review">Enter a review(optional)</label>
+                                </div>
+                            </div>
 
                     <!-- Submit Button -->
-                    <div class="row submit-button">
-                        <div class="card-action col s12">
-                            <button class="btn-large waves-effect waves-light" type="submit" action="submit">
-                                Submit
-                            </button>
-                        </div>
+                            <div class="row submit-button">
+                                <div class="card-action col s12">
+                                    <button class="btn-large waves-effect waves-light" type="submit" name="action">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>

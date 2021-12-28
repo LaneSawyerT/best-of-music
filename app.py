@@ -45,7 +45,6 @@ def get_album():
             artists_combined[album["rating"]].append(album["rating"])
 
 
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
@@ -117,20 +116,33 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
+@app.route("/profile")
+def profile():
     """
     Code by the developer.
-    Grabs the username from db 
+    Grabs the username from db and displays their uploaded info
     """
-
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
     if session["user"]:
-        return render_template("profile.html", username=username)
+        index = 0
+        ratings_combined = []
+        ratings = mongo.db.ratings.find({"created_by": session["user"]})
+        for rating in ratings:
+            album = mongo.db.albums.find_one({"_id": ObjectId(rating["album_id"])})
+            album_name = album["album_name"]
+            artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
+            ratings_combined.append({album_name: {}})
+            ratings_combined[index][album_name]["rating"] = rating["rating"]
+            ratings_combined[index][album_name]["review"] = rating["review"]
+            ratings_combined[index][album_name]["artist"] = artist["artist_name"]
+            ratings_combined[index][album_name]["image_url"] = album["image_url"]
+            ratings_combined[index][album_name]["rating_id"] = rating["_id"]
+            index += 1
 
-    return render_template("profile.html", username=username)
+        print(ratings_combined)
+        return render_template("profile.html", data=ratings_combined, username=session["user"])
+    else:
+        
+        return render_template("index.html")
 
 
 @app.route("/logout")
@@ -156,7 +168,8 @@ def upload():
         album = {
             "album_name": request.form.get("album_name"),
             "artist_id": request.form.get("artist_name"),
-            "image_url": request.form.get("image_url")
+            "image_url": request.form.get("image_url"),
+            "created_by": session["user"]
         }
         mongo.db.albums.insert_one(album)
 
@@ -164,22 +177,51 @@ def upload():
 
         rating = {
             "rating": request.form.get("rating"),
-            "album_id": albums["_id"]
+            "album_id": albums["_id"],
+            "review": request.form.get("review"),
+            "created_by": session["user"]
         }
         mongo.db.ratings.insert_one(rating)
-
-        review = {
-            "review": request.form.get("review"),
-            "album_id": albums["_id"]
-        }
-        mongo.db.reviews.insert_one(review)
 
     return render_template("upload.html", artists=artists)
 
 
-@app.route("/upload_artist")
+@app.route("/upload_artist", methods=["GET", "POST"])
 def upload_artist():
+    if request.method == "POST":
+        # Checks to see if artist name exists in db
+        existing_artist = mongo.db.artists.find_one(
+            {"artist_name": request.form.get("artist_name")})
+
+        if existing_artist:
+            flash("Artist is already uploaded")
+            return redirect(url_for("upload"))
+
+        artist = {
+            "artist_name": request.form.get("artist_name")
+            }
+        mongo.db.artists.insert_one(artist)
+
+        # Put the new user into upload page
+        flash("Artist Successfully added!")
+        return redirect(url_for("upload_artist"))
+
     return render_template("upload_artist.html")
+
+
+@app.route("/edit_rating/<rating_id>", methods=["GET", "POST"])
+def edit_rating(rating_id):
+    rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
+    if request.method == "POST":
+        submit = {
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+        }
+        mongo.db.ratings.update_one({"_id": ObjectId(rating_id)}, {'$set': submit})
+        flash("Rating Successfully Updated")
+        return render_template("profile.html")
+
+    return render_template("edit_rating.html", rating=rating)
 
 
 @app.route("/rankings")
@@ -195,16 +237,19 @@ def rankings():
 
     for album in albums:
         album_combined.append({})
-        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "number_of_ratings": 0}
+        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": ""}
         artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
         album_combined[index][album["album_name"]]["artist_name"] = artist["artist_name"]
+        album_combined[index][album["album_name"]]["image_url"] = album["image_url"]
+        album_combined[index][album["album_name"]]["album_id"] = album["_id"]
+
         ratings = mongo.db.ratings.find({"album_id": album["_id"]})
         count = 0
         running_total = 0
 
         for rating in ratings:
             running_total += int(rating["rating"]) 
-            count+=1
+            count +=1
 
         average = running_total/count
         album_combined[index][album["album_name"]]["rating"] = average
@@ -214,7 +259,7 @@ def rankings():
 
     page_num = int(request.args["page"]) if "page" in request.args else 1
 
-    num_per_page = 5
+    num_per_page = 6
 
     is_paginated = True if len(album_combined) > num_per_page else False
 
@@ -223,11 +268,11 @@ def rankings():
     else:
         num_pages = int((len(album_combined) / num_per_page) + 1)
 
-    if num_pages > page_num:
+    if page_num > num_pages:
         page_num = 1
 
     start = (num_per_page * page_num) - num_per_page
-    end = (num_per_page * page_num) - 1
+    end = (num_per_page * page_num)
 
     recordset = album_combined[start:end]
 
