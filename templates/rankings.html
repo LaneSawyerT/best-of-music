@@ -6,7 +6,7 @@
     <div class="row">
     {% for d in data %}
     {% for album, info in d.items() %}
-    
+    <!-- Top Rated Albums -->
         <div class="col s4">
             <div class="card rankings-content">
                 <div class="card-content">
@@ -14,14 +14,14 @@
                     <span class="card-title">{{ album }}</span>
                     <p>{{ info["artist_name"] }}</p>
                     <p>{{ info["rating"] }}</p>
-                    <img class="materialboxed" width="150" src="{{ info['image_url'] }}">
+                    <img class="materialboxed" width="150" height="150" src="{{ info['image_url'] }}">
                 </div>
 
-                <!-- Modal Trigger -->
+                <!-- Modal Button -->
                 <div class="center-align">
                 <a class="waves-effect waves-light btn modal-trigger info-button" href="#{{ info['album_id'] }}">Info</a>
             </div>
-                <!-- Modal Structure -->
+                <!-- Album Info -->
                 <div id="{{ info['album_id'] }}" class="modal">
                     <div class="modal-content">
                         {% for album, info in d.items() %}

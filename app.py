@@ -21,17 +21,35 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-def get_artist():
-    artists_combined = {}
-    artists = mongo.db.artists.find()
-    for artist in artists:
-        artists_combined[artist["artist_name"]] = [] 
-        albums = mongo.db.albums.find({"artist_id": artist["_id"]})
-        for album in albums:
-            artists_combined[artist["artist_name"]].append(album["album_name"])
+def index():
+    album_combined = []
+    albums = mongo.db.albums.find()
 
-    print(artists_combined)
-    return render_template("index.html", artists=artists_combined)
+    index = 0
+
+    for album in albums:
+        album_combined.append({})
+        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": ""}
+        artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
+        album_combined[index][album["album_name"]]["artist_name"] = artist["artist_name"]
+        album_combined[index][album["album_name"]]["image_url"] = album["image_url"]
+        album_combined[index][album["album_name"]]["album_id"] = album["_id"]
+
+        ratings = mongo.db.ratings.find({"album_id": album["_id"]})
+        count = 0
+        running_total = 0
+
+        for rating in ratings:
+            running_total += int(rating["rating"]) 
+            count +=1
+        
+        average = running_total/count
+        album_combined[index][album["album_name"]]["rating"] = average
+        album_combined[index][album["album_name"]]["number_of_ratings"] = count
+        index += 1
+
+
+    return render_template("index.html", artists=album_combined)
 
 
 @app.route("/get_album")

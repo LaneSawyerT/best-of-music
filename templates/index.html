@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="parallax-container hide-on-med-and-down">
-    <div class="parallax"><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}></div>
+    <div class="parallax"><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}>
+    </div>
 
     <div class="row mainpage-register">
         <div class="col">
@@ -22,23 +23,133 @@
 </div>
 <!-- For tablet /mobile sizes-->
 <div class="show-on-medium-and-down hide-on-large-only">
-    <div class="tablet-image"><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}></div>
-    
+    <div class="tablet-image"><img class="responsive-img" src={{url_for('static', filename='images/bestofmusic.png')}}>
+    </div>
+
 </div>
 
+<!-- Top Rated Albums -->
 <div class="section white">
-    <div class="row container">
-        <h2 class="header">Top Rated Albums</h2>
-        <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this
-            case, is moved at a different speed than the foreground content while scrolling.</p>
+    <div class="row container color">
+        <h2 class="header center">Top Rated Albums</h2>
+        {% for album, info in artists[0].items() %}
+
+        <div class="col s3 offset-s1 card-content home-content hide-on-small-only">
+            <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+            <h5>{{ info["artist_name"] }}</h5>
+            <p>{{ info["rating"] }}</p>
+            <img class="materialboxed album-image" width="150" src="{{ info['image_url'] }}">
+        </div>
+
+        {% endfor %}
+        {% for album, info in artists[1].items() %}
+
+
+        <div class="col s3 card-content home-content hide-on-small-only">
+            <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+            <h5>{{ info["artist_name"] }}</h5>
+            <p>{{ info["rating"] }}</p>
+            <img class="materialboxed album-image" width="150" src="{{ info['image_url'] }}">
+        </div>
+
+        {% endfor %}
+        {% for album, info in artists[2].items() %}
+
+        <div class="col s3 card-content home-content hide-on-small-only">
+            <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+            <h5>{{ info["artist_name"] }}</h5>
+            <p>{{ info["rating"] }}</p>
+            <img class="materialboxed album-image" width="150" src="{{ info['image_url'] }}">
+        </div>
+        {% endfor %}
+
+        <!--Mobile View-->
+        {% for album, info in artists[0].items() %}
+
+        <div class="col s6 card-content home-content show-on-small hide-on-med-and-up">
+            <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+            <h5>{{ info["artist_name"] }}</h5>
+            <p>{{ info["rating"] }}</p>
+            <img class="materialboxed album-image" width="100" src="{{ info['image_url'] }}">
+        </div>
+
+        {% endfor %}
+        {% for album, info in artists[1].items() %}
+
+
+        <div class="col s6  card-content home-content show-on-small hide-on-med-and-up">
+            <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+            <h5>{{ info["artist_name"] }}</h5>
+            <p>{{ info["rating"] }}</p>
+            <img class="materialboxed album-image" width="100" src="{{ info['image_url'] }}">
+        </div>
+
+        {% endfor %}
+
+        <div class="row">
+
+            <a href="{{ url_for('rankings') }}"><br>View All</a>
+        </div>
 
     </div>
+
     <div class="divider"></div>
-    <div class="section white">
-        <div class="row container">
-            <h2 class="header">Recently Upload Albums</h2>
-            <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in
-                this case, is moved at a different speed than the foreground content while scrolling.</p>
+
+
+    <!-- Recently Uploaded Albums -->
+    <div class="section container white">
+        <div class="row color">
+            <h2 class="header center">Recently Upload Albums</h2>
+            {% for album, info in artists[-1].items() %}
+            <div class="col s3 offset-s1 card-content home-content hide-on-small-only">
+                <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+                <h5>{{ info["artist_name"] }}</h5>
+                <p>{{ info["rating"] }}</p>
+                <img class="materialboxed album-image" width="150" src="{{ info['image_url'] }}">
+            </div>
+            {% endfor %}
+            {% for album, info in artists[-2].items() %}
+
+            <div class="col s3 card-content home-content hide-on-small-only">
+                <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+                <h5>{{ info["artist_name"] }}</h5>
+                <p>{{ info["rating"] }}</p>
+                <img class="materialboxed album-image" width="150" src="{{ info['image_url'] }}">
+            </div>
+            {% endfor %}
+            {% for album, info in artists[-3].items() %}
+            <div class="col s3 card-content home-content hide-on-small-only">
+                <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+                <h5>{{ info["artist_name"] }}</h5>
+                <p>{{ info["rating"] }}</p>
+                <img class="materialboxed album-image" width="150" src="{{ info['image_url'] }}">
+            </div>
+            {% endfor %}
+
+            <!--Mobile View-->
+            {% for album, info in artists[-1].items() %}
+            <div class="col s6 card-content home-content show-on-small hide-on-med-and-up">
+                <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+                <h5>{{ info["artist_name"] }}</h5>
+                <p>{{ info["rating"] }}</p>
+                <img class="materialboxed album-image" width="100" src="{{ info['image_url'] }}">
+            </div>
+            {% endfor %}
+            {% for album, info in artists[-2].items() %}
+
+            <div class="col s6 card-content home-content show-on-small hide-on-med-and-up">
+                <h4 class="card-title">{{ album|truncate(12, True, '...', 0) }}</h4>
+                <h5>{{ info["artist_name"] }}</h5>
+                <p>{{ info["rating"] }}</p>
+                <img class="materialboxed album-image" width="100" src="{{ info['image_url'] }}">
+            </div>
+            {% endfor %}
+
+
+            <div class="row ">
+
+                <a href="{{ url_for('rankings') }}"><br>View All</a>
+            </div>
         </div>
     </div>
     {% endblock %}
