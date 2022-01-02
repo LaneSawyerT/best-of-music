@@ -16,9 +16,9 @@
 
 
 
-<h1 class="center">Top rated Albums</h1>
+<h1 class="center">Top Rated Albums</h1>
 <div class="container">
-    <div class="row">
+    <div class="row show-on-medium-and-up hide-on-small-only">
         {% for d in data %}
         {% for album, info in d.items() %}
         <!-- Top Rated Albums -->
@@ -37,128 +37,174 @@
                     <a class="waves-effect waves-light btn modal-trigger info-button"
                         href="#{{ info['album_id'] }}">Info</a>
                 </div>
-                <!-- Modal Button Mobile -->
-                <div class="center-align hide-on-med-and-up">
-                    <a class="waves-effect waves-light btn modal-trigger info-button"
-                        href="#{{ info['album_id'] }}">Info</a>
-                </div>
 
                 <!-- Album Modal Info -->
-                <div id="{{ info['album_id'] }}" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                        {% for album, info in d.items() %}
-                        <h4>{{ album }}</h4>
-                        <p>{{ info["artist_name"] }}</p>
-                        <p>{{ info["rating"] }}</p>
-
-                        <img class="materialboxed" width="150" height="150" src="{{ info['image_url'] }}">
-                        {% endfor %}
-
-                    </div>
-                    <div class="offset-m3 reviews">
-                        {% for review in info["reviews"] %}
-                        <p>{{ review["review"] }}</p>
-                        <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; Rated By : {{ review["user"] }}</p>
-
-                        {% endfor%}
-                    </div>
-
-                    <form class="col s9 offset-m2">
+                <div id="{{ info['album_id'] }}" class="modal modal-fixed-footer modal-desktop">
+                    <div class="modal-content hide-on-small-only">
                         <div class="row">
-                            <!-- Rating -->
-                            <div class="input-field col s6 offset-s3">
-                                <p class="range-field">
-                                    <label for="range" class="label-heading">Rate</label>
-                                    <input type="range" name="rating" id="rating" min="0" max="100" required />
-                                </p>
-                                <!-- Review -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="review" class="materialize-textarea"></textarea>
-                                        <label for="review">Enter Your Review</label>
-                                    </div>
+                            <div class="col s6">
+                                {% for album, info in d.items() %}
+                                <h4>{{ album }}</h4>
+                                <p>{{ info["artist_name"] }}</p>
+                                <p>{{ info["rating"] }}</p>
 
-                                </div>
-                                <div class="row submit-button">
-                                    <div class="card-action col s12">
-                                        <button class="btn-large waves-effect waves-light" type="submit"
-                                            action="submit">
-                                            Rate
-                                        </button>
-                                    </div>
-                                </div>
-
+                                <img class="materialboxed" width="150" height="150" src="{{ info['image_url'] }}">
+                                {% endfor %}
                             </div>
+
+                        <div class="col s6 reviews">
+                            {% for review in info["reviews"] %}
+                            <p>{{ review["review"] }}</p>
+                            <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; Rated By : {{ review["user"] }}</p>
+
+                            {% endfor%}
                         </div>
-                    </form>
-
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                     </div>
-                </div>
-                <!-- Mobile Modal-->
-                <div id="{{ info['album_id'] }}" class="modal modal-mobile modal-fixed-footer">
-                    <div class="modal-content">
-                        {% for album, info in d.items() %}
-                        <h4>{{ album }}</h4>
-                        <p>{{ info["artist_name"] }}</p>
-                        <p>{{ info["rating"] }}</p>
+                    <div class="row">
+                        <form class="col s9 offset-m2">
+                            <div class="row">
+                                <!-- Rating -->
+                                <div class="input-field col s9 offset-s1">
+                                    <p class="range-field">
+                                        <label for="range" class="label-heading">Rate</label>
+                                        <input type="range" name="rating" id="rating" min="0" max="100" required />
+                                    </p>
+                                    <!-- Review -->
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea id="review" class="materialize-textarea"></textarea>
+                                            <label for="review">Enter Your Review</label>
+                                        </div>
 
-                        <img class="materialboxed" width="150" height="150" src="{{ info['image_url'] }}">
-                        {% endfor %}
+                                    </div>
+                                    <div class="row submit-button">
+                                        <div class="card-action col s12">
 
-                    </div>
-                    <div class="offset-m3 reviews">
-                        {% for review in info["reviews"] %}
-                        <p>{{ review["review"] }}</p>
-                        <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; Rated By : {{ review["user"] }}</p>
-
-                        {% endfor%}
-                    </div>
-
-                    <form class="col s9 offset-m2">
-                        <div class="row">
-                            <!-- Rating -->
-                            <div class="input-field col s6 offset-s3">
-                                <p class="range-field">
-                                    <label for="range" class="label-heading">Rate</label>
-                                    <input type="range" name="rating" id="rating" min="0" max="100" required />
-                                </p>
-                                <!-- Review -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="review" class="materialize-textarea"></textarea>
-                                        <label for="review">Enter Your Review</label>
+                                            {% if session.user %}
+                                            <button class="btn-large waves-effect waves-light" type="submit"
+                                                action="submit">
+                                                Rate
+                                            </button>
+                                            {% else %}
+                                            <a href="{{ url_for('register') }}"
+                                                class="waves-effect waves-light btn">Rate</a>
+                                            {% endif %}
+                                        </div>
                                     </div>
 
                                 </div>
-                                <div class="row submit-button">
-                                    <div class="card-action col s12">
-                                        <button class="btn-large waves-effect waves-light" type="submit"
-                                            action="submit">
-                                            Rate
-                                        </button>
-                                    </div>
-                                </div>
-
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer mobile-footer">
                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                     </div>
                 </div>
 
             </div>
         </div>
+        </div>
         {% endfor %}
         {% if loop.index is divisibleby 3 %}
     </div>
-    <div class="row">
+    <div class="row show-on-medium-and-up hide-on-small-only">
         {% endif %}
         {% endfor %}
     </div>
+
+    <!-- Added for mobile  -->
+
+    <div class="row hide-on-med-and-up show-on-small">
+        {% for d in data %}
+        {% for album, info in d.items() %}
+        <!-- Top Rated Albums -->
+        <div class="col s6">
+            <div class="card rankings-content">
+                <div class="card-content">
+
+                    <span class="card-title">{{ album }}</span>
+                    <p>{{ info["artist_name"] }}</p>
+                    <p>{{ info["rating"] }}</p>
+                    <img class="materialboxed album-image" width="100" height="100" src="{{ info['image_url'] }}">
+                </div>
+                <div class="divider"></div>
+                <!-- Modal Button Mobile -->
+                <div class="center-align hide-on-med-and-up">
+                    <a class="waves-effect waves-light btn modal-trigger info-button"
+                        href="#mob{{ info['album_id'] }}">Info</a>
+                </div>
+
+                <!-- Mobile Modal-->
+
+                <div id="mob{{ info['album_id'] }}" class="modal modal-rankings modal-fixed-footer">
+                    <div class="modal-content">
+                        <div class="row">
+                            <div class="col s6">
+                                {% for album, info in d.items() %}
+                                <h5>{{ album }}</h5>
+                                <p>{{ info["artist_name"] }}</p>
+                                <p>{{ info["rating"] }}</p>
+                                <img class="materialboxed" width="100" height="100" src="{{ info['image_url'] }}">
+                                {% endfor %}
+                            </div>
+                            <div class="col s6">
+                                <div class="reviews-mobile">
+                                    {% for review in info["reviews"] %}
+                                    <p>{{ review["review"] }}</p>
+                                    <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; <br>Rated By : {{ review["user"] }}</p>
+                                    <div class="divider"></div>
+                                    {% endfor%}
+                                </div>
+                            </div>
+                        </div>
+                        <form >
+                            <div class="row">
+                                <div class="col s10 offset-m2">
+                                <!-- Rating -->
+                                    <div class="input-field ">
+                                        <p class="range-field">
+                                        <label for="range" class="label-heading">Rate</label>
+                                        <input type="range" name="rating" id="rating" min="0" max="100" required />
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- Review -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="review" class="materialize-textarea"></textarea>
+                                        <label for="review">Enter Your Review</label>
+                                    </div>
+                                </div>
+                             <!-- Submit Button -->
+                            <div class="row submit-button">
+                                <div class="card-action col s11">
+                                    <button class="btn-large waves-effect waves-light" type="submit"
+                                        action="submit">
+                                        Rate
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                        <div class="mobile-footer modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                        </div>
+                    </div>
+                 </div>
+
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+        {% if loop.index is divisibleby 2 %}
+    </div>
+    <div class="row hide-on-med-and-up show-on-small">
+        {% endif %}
+        {% endfor %}
+    </div>
+
 </div>
 
 

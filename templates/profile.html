@@ -15,17 +15,15 @@
 </section>
 
 <div class="row">
-
-
-    <div class="col s8 offset-m2 hide-on-small-only">
+    <div class="col s8 offset-m2 hide-on-small-only show-on-medium-and-up">
         <div class="card register-content">
             <div class="card-content">
-                <h2 class="card-title">{{ username }}'s Profile</h2>
+                <h3 class="center">Edit Your Posts</h3>
+                <h2 class="card-title center">{{ username }}'s Profile</h2>
                 <form>
                     <!-- User's uploaded posts -->
-                    <h3>Edit your posts</h3>
-                    <div class="row hide-on-small-only">
-                        
+                    <div class="row">
+
                         {% for d in data %}
                         <div class="profile-content col s4 center">
                             {% for album, info in d.items() %}
@@ -54,43 +52,43 @@
             </div>
         </div>
     </div>
-    <!--Mobile view-->
-
-
+</div>
+<!--Mobile view-->
+<div class="row">
     <div class="col s12 show-on-small hide-on-med-and-up">
         <div class="card register-content">
-            <div class="card-content ">
-                <h2 class="card-title">{{ username }}'s Profile</h2>
+            <div class="card-content">
+                <h3 class="center">Edit Your Posts</h3>
+                <h2 class="card-title center">{{ username }}'s Profile</h2>
                 <form>
-                    <h3>Edit your posts</h3>
-                <div class="row col s12 hide-on-med-and-up">
-                    {% for d in data %}
-                    <div class="profile-content col s6 center">
-                       
-                        {% for album, info in d.items() %}
+                    <div class="row hide-on-med-and-up show-on-small">
+                        {% for d in data %}
+                        <div class="profile-content col s6 center">
 
-                        <h4>{{ album|truncate(10, True, '...', 0) }}</h4>
-                        <div class="divider"></div>
-                        <p>{{ info["artist_name"] }}</p>
+                            {% for album, info in d.items() %}
 
-                        <p>{{ info["rating"] }}</p>
-                        <img class="materialboxed album-image" width="100" height="100" src="{{ info['image_url'] }}">
-                        <div class="divider"></div>
-                        <a href="{{ url_for('edit_rating', rating_id=info['rating_id']) }}"
-                            class="edit-button waves-effect waves-light btn-small">Edit</a>
+                            <h4>{{ album|truncate(10, True, '...', 0) }}</h4>
+                            <div class="divider"></div>
+                            <p>{{ info["artist_name"] }}</p>
+
+                            <p>{{ info["rating"] }}</p>
+                            <img class="materialboxed album-image" width="100" height="100"
+                                src="{{ info['image_url'] }}">
+                            <div class="divider"></div>
+                            <a href="{{ url_for('edit_rating', rating_id=info['rating_id']) }}"
+                                class="edit-button waves-effect waves-light btn-small">Edit</a>
 
 
+                            {% endfor %}
+                        </div>
+                        {% if loop.index is divisibleby 2 %}
+                    </div>
+                    <div class="row show-on-small hide-on-med-and-up">
+                        {% endif %}
                         {% endfor %}
                     </div>
-                    {% if loop.index is divisibleby 2 %}
-                </div>
-                <div class="row show-on-small hide-on-med-and-up">
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            </form>
+                </form>
             </div>
-            
         </div>
     </div>
 </div>

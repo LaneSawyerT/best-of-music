@@ -20,6 +20,14 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+def get_album_from_rating(rating_id):
+
+    rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
+    album = mongo.db.albums.find_one({"_id": ObjectId(rating["album_id"])})
+    artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
+
+    return {"album": album["album_name"], "artist": artist["artist_name"], "image": album["image_url"]}
+
 @app.route("/")
 def index():
     album_combined = []
@@ -233,6 +241,7 @@ def upload_artist():
 @app.route("/edit_rating/<rating_id>", methods=["GET", "POST"])
 def edit_rating(rating_id):
     rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
+    album_details = get_album_from_rating(rating_id)
     if request.method == "POST":
         submit = {
             "rating": request.form.get("rating"),
@@ -240,9 +249,10 @@ def edit_rating(rating_id):
         }
         mongo.db.ratings.update_one({"_id": ObjectId(rating_id)}, {'$set': submit})
         flash("Rating Successfully Updated")
+        return redirect(url_for("profile"))
         return render_template("profile.html")
 
-    return render_template("edit_rating.html", rating=rating)
+    return render_template("edit_rating.html", rating=rating, album=album_details)
 
 
 @app.route("/rankings", methods=["GET", "POST"])
