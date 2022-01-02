@@ -201,6 +201,9 @@ def upload():
         }
         mongo.db.ratings.insert_one(rating)
 
+        flash("Album Successfully Added!")
+        return redirect(url_for("rankings"))
+
     return render_template("upload.html", artists=artists)
 
 
@@ -220,9 +223,9 @@ def upload_artist():
             }
         mongo.db.artists.insert_one(artist)
 
-        # Put the new user into upload page
-        flash("Artist Successfully added!")
-        return redirect(url_for("upload_artist"))
+        # Indicated Artist has been added
+        flash("Artist Successfully Added!")
+        return redirect(url_for("upload"))
 
     return render_template("upload_artist.html")
 
@@ -242,7 +245,7 @@ def edit_rating(rating_id):
     return render_template("edit_rating.html", rating=rating)
 
 
-@app.route("/rankings")
+@app.route("/rankings", methods=["GET", "POST"])
 def rankings():
     """
     Code by the developer.
@@ -255,7 +258,7 @@ def rankings():
 
     for album in albums:
         album_combined.append({})
-        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": ""}
+        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": "", "reviews": []}
         artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
         album_combined[index][album["album_name"]]["artist_name"] = artist["artist_name"]
         album_combined[index][album["album_name"]]["image_url"] = album["image_url"]
@@ -264,11 +267,15 @@ def rankings():
         ratings = mongo.db.ratings.find({"album_id": album["_id"]})
         count = 0
         running_total = 0
-
         for rating in ratings:
-            running_total += int(rating["rating"]) 
+            score = int(rating["rating"])
+            review = rating["review"]
+            user = rating["created_by"]
+            album_combined[index][album["album_name"]]["reviews"].append({"rating": score, "review": review, "user": user})
+            running_total += score
             count +=1
 
+        print(count, running_total)
         average = running_total/count
         album_combined[index][album["album_name"]]["rating"] = average
         album_combined[index][album["album_name"]]["number_of_ratings"] = count

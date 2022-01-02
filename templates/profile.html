@@ -25,6 +25,7 @@
                     <!-- User's uploaded posts -->
                     <h3>Edit your posts</h3>
                     <div class="row hide-on-small-only">
+                        
                         {% for d in data %}
                         <div class="profile-content col s4 center">
                             {% for album, info in d.items() %}
@@ -65,6 +66,7 @@
                 <div class="row col s12 hide-on-med-and-up">
                     {% for d in data %}
                     <div class="profile-content col s6 center">
+                       
                         {% for album, info in d.items() %}
 
                         <h4>{{ album|truncate(10, True, '...', 0) }}</h4>
