@@ -261,6 +261,18 @@ def rankings():
     Code by the developer.
     Compiles information input by all users and puts them ranked
     """
+
+    if request.method == "POST":
+        submit = {
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+            "album_id": ObjectId(request.form.get("album_id")),
+            "created_by": session["user"]
+        }
+        mongo.db.ratings.insert_one(submit)
+        flash("Rating Successfully Added")
+
+
     album_combined = []
     albums = mongo.db.albums.find()
 
@@ -285,11 +297,19 @@ def rankings():
             running_total += score
             count +=1
 
-        print(count, running_total)
         average = running_total/count
         album_combined[index][album["album_name"]]["rating"] = average
         album_combined[index][album["album_name"]]["number_of_ratings"] = count
+
+        edited = mongo.db.ratings.count_documents({"album_id": album["_id"], "created_by": session["user"]})
+        
+        if edited > 0:
+            album_combined[index][album["album_name"]]["already_edited"] = True
+        else:
+            album_combined[index][album["album_name"]]["already_edited"] = False
+
         index += 1
+        
 
 
     page_num = int(request.args["page"]) if "page" in request.args else 1
