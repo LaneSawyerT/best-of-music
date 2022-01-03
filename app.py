@@ -280,11 +280,11 @@ def rankings():
 
     for album in albums:
         album_combined.append({})
-        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": "", "reviews": []}
+        album_combined[index]["album"] = {"album_name": album["album_name"], "rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": "", "reviews": []}
         artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
-        album_combined[index][album["album_name"]]["artist_name"] = artist["artist_name"]
-        album_combined[index][album["album_name"]]["image_url"] = album["image_url"]
-        album_combined[index][album["album_name"]]["album_id"] = album["_id"]
+        album_combined[index]["album"]["artist_name"] = artist["artist_name"]
+        album_combined[index]["album"]["image_url"] = album["image_url"]
+        album_combined[index]["album"]["album_id"] = album["_id"]
 
         ratings = mongo.db.ratings.find({"album_id": album["_id"]})
         count = 0
@@ -293,24 +293,25 @@ def rankings():
             score = int(rating["rating"])
             review = rating["review"]
             user = rating["created_by"]
-            album_combined[index][album["album_name"]]["reviews"].append({"rating": score, "review": review, "user": user})
+            album_combined[index]["album"]["reviews"].append({"rating": score, "review": review, "user": user})
             running_total += score
             count +=1
 
         average = running_total/count
-        album_combined[index][album["album_name"]]["rating"] = average
-        album_combined[index][album["album_name"]]["number_of_ratings"] = count
+        album_combined[index]["album"]["rating"] = average
+        album_combined[index]["album"]["number_of_ratings"] = count
 
         edited = mongo.db.ratings.count_documents({"album_id": album["_id"], "created_by": session["user"]})
         
         if edited > 0:
-            album_combined[index][album["album_name"]]["already_edited"] = True
+            album_combined[index]["album"]["already_edited"] = True
         else:
-            album_combined[index][album["album_name"]]["already_edited"] = False
+            album_combined[index]["album"]["already_edited"] = False
 
         index += 1
         
-
+        album_combined.sort(key=lambda item: item["album"]["rating"], reverse=True)
+    
 
     page_num = int(request.args["page"]) if "page" in request.args else 1
 

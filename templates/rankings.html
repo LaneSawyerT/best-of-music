@@ -26,7 +26,7 @@
             <div class="card rankings-content">
                 <div class="card-content">
 
-                    <span class="card-title">{{ album }}</span>
+                    <span class="card-title">{{ info["album_name"] }}</span>
                     <p>{{ info["artist_name"] }}</p>
                     <p>{{ info["rating"] }}</p>
                     <img class="materialboxed album-image" width="150" height="150" src="{{ info['image_url'] }}">
@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col s6">
                                 {% for album, info in d.items() %}
-                                <h4>{{ album }}</h4>
+                                <h4>{{ info["album_name"] }}</h4>
                                 <p>{{ info["artist_name"] }}</p>
                                 <p>{{ info["rating"] }}</p>
 
@@ -129,7 +129,7 @@
             <div class="card rankings-content">
                 <div class="card-content">
 
-                    <span class="card-title">{{ album }}</span>
+                    <span class="card-title">{{ info["album_name"] }}</span>
                     <p>{{ info["artist_name"] }}</p>
                     <p>{{ info["rating"] }}</p>
                     <img class="materialboxed album-image" width="100" height="100" src="{{ info['image_url'] }}">
@@ -148,7 +148,7 @@
                         <div class="row">
                             <div class="col s6">
                                 {% for album, info in d.items() %}
-                                <h5>{{ album }}</h5>
+                                <h5>{{ info["album_name"] }}</h5>
                                 <p>{{ info["artist_name"] }}</p>
                                 <p>{{ info["rating"] }}</p>
                                 <img class="materialboxed" width="100" height="100" src="{{ info['image_url'] }}">
@@ -206,6 +206,8 @@
             </div>
         </div>
         </div>
+        {% else %}
+                        <p>You've already rated this, go back to edit.</p>
         {% endfor %}
         {% if loop.index is divisibleby 2 %}
     </div>
