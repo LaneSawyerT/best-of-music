@@ -301,12 +301,16 @@ def rankings():
         album_combined[index]["album"]["rating"] = average
         album_combined[index]["album"]["number_of_ratings"] = count
 
-        edited = mongo.db.ratings.count_documents({"album_id": album["_id"], "created_by": session["user"]})
-        
+        if "user" in session:
+            edited = mongo.db.ratings.count_documents({"album_id": album["_id"], "created_by": session["user"]})
+        else:
+            edited = 1
+
         if edited > 0:
             album_combined[index]["album"]["already_edited"] = True
         else:
             album_combined[index]["album"]["already_edited"] = False
+
 
         index += 1
         

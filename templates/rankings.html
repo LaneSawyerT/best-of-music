@@ -52,64 +52,69 @@
                                 {% endfor %}
                             </div>
 
-                        <div class="col s6 reviews">
-                            {% for review in info["reviews"] %}
-                            <p>{{ review["review"] }}</p>
-                            <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; Rated By : {{ review["user"] }}</p>
+                            <div class="col s6 reviews">
+                                {% for review in info["reviews"] %}
+                                <p>{{ review["review"] }}</p>
+                                <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; Rated By : {{ review["user"] }}</p>
 
-                            {% endfor%}
+                                {% endfor%}
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% if session.user %}
+                            {% if not info["already_edited"] %}
+                            <form class="col s9 offset-m2" action="/rankings" method="POST">
+                                <input type="hidden" name="album_id" value="{{ info['album_id'] }}" />
+                                <div class="row">
+                                    <!-- Rating -->
+                                    <div class="input-field col s9 offset-s1">
+                                        <p class="range-field">
+                                            <label for="range" class="label-heading">Rate</label>
+                                            <input type="range" name="rating" id="rating" min="0" max="100" required />
+                                        </p>
+                                        <!-- Review -->
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea id="review" name="review"
+                                                    class="materialize-textarea"></textarea>
+                                                <label for="review">Enter Your Review</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="row submit-button">
+                                            <div class="card-action col s12">
+
+                                                {% if session.user %}
+                                                <button class="btn-large waves-effect waves-light" type="submit"
+                                                    action="submit">
+                                                    Rate
+                                                </button>
+                                                {% else %}
+                                                <a href="{{ url_for('register') }}"
+                                                    class="waves-effect waves-light btn">Rate</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                            {% else %}
+                            <p>You've already rated this, go back to edit.</p>
+                            {% endif %}
+
+                        {% else %}
+                            Sign Up to start rating today! 
+                        {% endif %}
+                        </div>
+
+                        <div class="modal-footer mobile-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                         </div>
                     </div>
-                    <div class="row">
-                        {% if not info["already_edited"] %}
-                        <form class="col s9 offset-m2" action="/rankings" method="POST">
-                            <input type="hidden" name="album_id" value="{{ info['album_id'] }}" />
-                            <div class="row">
-                                <!-- Rating -->
-                                <div class="input-field col s9 offset-s1">
-                                    <p class="range-field">
-                                        <label for="range" class="label-heading">Rate</label>
-                                        <input type="range" name="rating" id="rating" min="0" max="100" required />
-                                    </p>
-                                    <!-- Review -->
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <textarea id="review" name="review" class="materialize-textarea"></textarea>
-                                            <label for="review">Enter Your Review</label>
-                                        </div>
 
-                                    </div>
-                                    <div class="row submit-button">
-                                        <div class="card-action col s12">
-
-                                            {% if session.user %}
-                                            <button class="btn-large waves-effect waves-light" type="submit"
-                                                action="submit">
-                                                Rate
-                                            </button>
-                                            {% else %}
-                                            <a href="{{ url_for('register') }}"
-                                                class="waves-effect waves-light btn">Rate</a>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </form>
-                        {% else %}
-                        <p>You've already rated this, go back to edit.</p>
-                        {% endif %}
-                        
-                    </div>
-
-                    <div class="modal-footer mobile-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                    </div>
                 </div>
-
             </div>
-        </div>
         </div>
         {% endfor %}
         {% if loop.index is divisibleby 3 %}
@@ -158,7 +163,8 @@
                                 <div class="reviews-mobile">
                                     {% for review in info["reviews"] %}
                                     <p>{{ review["review"] }}</p>
-                                    <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; <br>Rated By : {{ review["user"] }}</p>
+                                    <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; <br>Rated By :
+                                        {{ review["user"] }}</p>
                                     <div class="divider"></div>
                                     {% endfor%}
                                 </div>
@@ -169,27 +175,26 @@
                             <input type="hidden" name="album_id" value="{{ info['album_id'] }}" />
                             <div class="row">
                                 <div class="col s10 offset-m2">
-                                <!-- Rating -->
+                                    <!-- Rating -->
                                     <div class="input-field ">
                                         <p class="range-field">
-                                        <label for="range" class="label-heading">Rate</label>
-                                        <input type="range" name="rating" id="rating" min="0" max="100" required />
+                                            <label for="range" class="label-heading">Rate</label>
+                                            <input type="range" name="rating" id="rating" min="0" max="100" required />
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                                <!-- Review -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="review" name="review" class="materialize-textarea"></textarea>
-                                        <label for="review">Enter Your Review</label>
-                                    </div>
+                            <!-- Review -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="review" name="review" class="materialize-textarea"></textarea>
+                                    <label for="review">Enter Your Review</label>
                                 </div>
-                             <!-- Submit Button -->
+                            </div>
+                            <!-- Submit Button -->
                             <div class="row submit-button">
                                 <div class="card-action col s11">
-                                    <button class="btn-large waves-effect waves-light" type="submit"
-                                        action="submit">
+                                    <button class="btn-large waves-effect waves-light" type="submit" action="submit">
                                         Rate
                                     </button>
                                 </div>
@@ -197,17 +202,17 @@
                         </form>
                         {% endif %}
                         <div class="row">
-                        <div class="mobile-footer modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                            <div class="mobile-footer modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                            </div>
                         </div>
                     </div>
-                 </div>
 
+                </div>
             </div>
         </div>
-        </div>
         {% else %}
-                        <p>You've already rated this, go back to edit.</p>
+        <p>You've already rated this, go back to edit.</p>
         {% endfor %}
         {% if loop.index is divisibleby 2 %}
     </div>
