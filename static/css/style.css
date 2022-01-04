@@ -90,8 +90,12 @@ nav .nav-wrapper {
     margin-bottom: 2%;
 }
 
-.edit-button {
+.profile-button {
     margin: 5%;
+}
+
+.delete-modal {
+    width: 25%;
 }
 
 /* Upload Page */
@@ -123,6 +127,7 @@ input[type="range"] {
     border: 1px solid #463f3a;
 }
 
+
 /* Rankings Page */
 .rankings-content {
     background-color: #b6ccfe;
@@ -135,7 +140,8 @@ input[type="range"] {
 
 .reviews {
     display:block;
-    border: 1px solid red;
+    box-shadow: .5px 1px 1px 2px grey;
+    background-color: #fff;    
     padding:5px;
     margin-top:4%;
     margin-left: 35%;
@@ -154,12 +160,16 @@ input[type="range"] {
     overflow:scroll;
 }
 
+.modal-desktop {
+    height: 83% !important;
+}
+
 .modal-rankings {
     left: 0;
     right: 0;
     background-color: #fafafa;
     padding: 0;
-    height: 89% !important;
+    height: 83% !important;
     max-height: 89%;
     width: 90%;
     will-change: top, opacity;

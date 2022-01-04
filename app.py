@@ -28,8 +28,8 @@ def get_album_from_rating(rating_id):
 
     return {"album": album["album_name"], "artist": artist["artist_name"], "image": album["image_url"]}
 
-@app.route("/")
-def index():
+def get_combined_data():
+
     album_combined = []
     albums = mongo.db.albums.find()
 
@@ -37,38 +37,54 @@ def index():
 
     for album in albums:
         album_combined.append({})
-        album_combined[index][album["album_name"]] = {"rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": ""}
+        album_combined[index]["album"] = {"album_name": album["album_name"], "rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": "", "reviews": []}
         artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
-        album_combined[index][album["album_name"]]["artist_name"] = artist["artist_name"]
-        album_combined[index][album["album_name"]]["image_url"] = album["image_url"]
-        album_combined[index][album["album_name"]]["album_id"] = album["_id"]
+        album_combined[index]["album"]["artist_name"] = artist["artist_name"]
+        album_combined[index]["album"]["image_url"] = album["image_url"]
+        album_combined[index]["album"]["album_id"] = album["_id"]
 
         ratings = mongo.db.ratings.find({"album_id": album["_id"]})
         count = 0
         running_total = 0
-
         for rating in ratings:
-            running_total += int(rating["rating"]) 
+            score = int(rating["rating"])
+            review = rating["review"]
+            user = rating["created_by"]
+            album_combined[index]["album"]["reviews"].append({"rating": score, "review": review, "user": user})
+            running_total += score
             count +=1
-        
-        average = running_total/count
-        album_combined[index][album["album_name"]]["rating"] = average
-        album_combined[index][album["album_name"]]["number_of_ratings"] = count
+        try:
+            average = running_total/count
+        except ZeroDivisionError:
+            average = 0
+        album_combined[index]["album"]["rating"] = average
+        album_combined[index]["album"]["number_of_ratings"] = count
+
+        if "user" in session:
+            edited = mongo.db.ratings.count_documents({"album_id": album["_id"], "created_by": session["user"]})
+        else:
+            edited = 1
+
+        if edited > 0:
+            album_combined[index]["album"]["already_edited"] = True
+        else:
+            album_combined[index]["album"]["already_edited"] = False
+
         index += 1
 
+    return album_combined
 
-    return render_template("index.html", artists=album_combined)
 
+@app.route("/")
+def index():
 
-@app.route("/get_album")
-def get_album():
-    album_combined = {}
-    album = mongo.db.albums.find()
-    for album in albums:
-        album_combined[album["album_name"]] = []
-        albums = mongo.db.albums.find({"rating_id": rating["_id"]}, {"review_id": review["_id"]})
-        for album in albums:
-            artists_combined[album["rating"]].append(album["rating"])
+    album_combined = get_combined_data()
+    latest_uploads = album_combined[-3:]
+        
+    album_combined.sort(key=lambda item: item["album"]["rating"], reverse=True)
+
+    return render_template("index.html", artists=album_combined, latest=latest_uploads)
+
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -153,6 +169,7 @@ def profile():
         ratings_combined = []
         ratings = mongo.db.ratings.find({"created_by": session["user"]})
         for rating in ratings:
+            print(rating["album_id"])
             album = mongo.db.albums.find_one({"_id": ObjectId(rating["album_id"])})
             album_name = album["album_name"]
             artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
@@ -217,6 +234,7 @@ def upload():
 
 @app.route("/upload_artist", methods=["GET", "POST"])
 def upload_artist():
+
     if request.method == "POST":
         # Checks to see if artist name exists in db
         existing_artist = mongo.db.artists.find_one(
@@ -255,6 +273,13 @@ def edit_rating(rating_id):
     return render_template("edit_rating.html", rating=rating, album=album_details)
 
 
+@app.route("/delete_rating/<rating_id>")
+def delete_rating(rating_id):
+    mongo.db.ratings.delete_one({"_id": ObjectId(rating_id)})
+    flash("Rating Successfully Deleted")
+    return redirect(url_for("rankings"))
+
+
 @app.route("/rankings", methods=["GET", "POST"])
 def rankings():
     """
@@ -272,51 +297,10 @@ def rankings():
         mongo.db.ratings.insert_one(submit)
         flash("Rating Successfully Added")
 
-
-    album_combined = []
-    albums = mongo.db.albums.find()
-
-    index = 0
-
-    for album in albums:
-        album_combined.append({})
-        album_combined[index]["album"] = {"album_name": album["album_name"], "rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": "", "reviews": []}
-        artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
-        album_combined[index]["album"]["artist_name"] = artist["artist_name"]
-        album_combined[index]["album"]["image_url"] = album["image_url"]
-        album_combined[index]["album"]["album_id"] = album["_id"]
-
-        ratings = mongo.db.ratings.find({"album_id": album["_id"]})
-        count = 0
-        running_total = 0
-        for rating in ratings:
-            score = int(rating["rating"])
-            review = rating["review"]
-            user = rating["created_by"]
-            album_combined[index]["album"]["reviews"].append({"rating": score, "review": review, "user": user})
-            running_total += score
-            count +=1
-
-        average = running_total/count
-        album_combined[index]["album"]["rating"] = average
-        album_combined[index]["album"]["number_of_ratings"] = count
-
-        if "user" in session:
-            edited = mongo.db.ratings.count_documents({"album_id": album["_id"], "created_by": session["user"]})
-        else:
-            edited = 1
-
-        if edited > 0:
-            album_combined[index]["album"]["already_edited"] = True
-        else:
-            album_combined[index]["album"]["already_edited"] = False
-
-
-        index += 1
+    album_combined = get_combined_data()
         
-        album_combined.sort(key=lambda item: item["album"]["rating"], reverse=True)
+    album_combined.sort(key=lambda item: item["album"]["rating"], reverse=True)
     
-
     page_num = int(request.args["page"]) if "page" in request.args else 1
 
     num_per_page = 6
