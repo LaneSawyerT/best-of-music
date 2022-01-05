@@ -1,108 +1,414 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1 align="center">Best of Music</h1>
 
-Welcome LaneSawyerT,
+<h1>About:</h1>
+This is the website for Best of Music. A community that will allow users to upload their favourite artist/albums and rate them accordingly. Users have the ability to see which albums are more recently uploaded and the highest rated albums. Users will also be able to rate the music that is uploaded and edit their own ratings or reviews as they see fit. Best of music is designed to be responsive on all screen sizes and work across multiple devices. Ensuring it is easy for new and existing users to sign up, login, and upload their favourite albums and rate existing ones. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
 
-## Gitpod Reminders
+## Contents
+-  ###  [UX User Experience](#User-Experience-(UX))
+    -   [User Stories](#User-stories)
+    -   [Site Owner Goals](#Site-Owner-Goals)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+-  ###  [Website Design](#Design-Choices) 
+    -   [Typography](#Typography)
+    -   [Colours](#Colour-Scheme)
+    -   [Imagery](#Imagery)
+    -   [Wireframes](#Wireframes)
 
-`python3 -m http.server`
+-  ###  [Technologies](#Technologies-Used)
+    -   [Languages](#Languages-Used)
+    -   [Database](#Database-Used)
+    -   [Libraries](#frameworks-Libraries-&-Programs-Used)
 
-A blue button should appear to click: _Make Public_,
+-  ###  [Features](#Features)  
+    -   [Site Navigation](#Site-Navigation)
+    -   [Current Features](#Current-Features)
 
-Another blue button should appear to click: _Open Browser_.
+-  ###  [Testing](TESTING.md)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+-  ###  [Deployment](#GitHub-Pages)
+    -   [GitHub Pages](#GitHub-Pages)
 
-A blue button should appear to click: _Make Public_,
+-  ###  [Credits](#Code)
+    -   [Code](#Code)
+    -   [Content](#Content)
+    -   [Media](#Media)
 
-Another blue button should appear to click: _Open Browser_.
+    ## User Experience (UX)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### User stories
 
-To log into the Heroku toolbelt CLI:
+-   ### As a First Time User
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+    - I want to be able to quickly understand the websites purpose.
+    - I want to easily navigate the site and see what content is available.
+    - I want to be able to quickly join so I can rate music.
+    - I would like the ability to read reviews of the music uploaded.
+    - I want to be able to see ratings of all the music uploaded.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
-------
+-   ### As a Returning User
 
-## Release History
+    - I want to be able to easily login.
+    - I want to still be able to see uploaded albums.
+    - I would like the ability to upload music.
+    - I would like the ability to read reviews of the music uploaded.
+    - I would like to be able to edit my own ratings or reviews if I change my mind.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+-   ### Frequent User
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+    - I want to be able to upload music.
+    - I want to be able to see my uploaded music or reviews easily. 
+    - I would like to rate music as much as I want.
+    - I want the ability to rate albums as I see them in their rankings.
+    - I would like the ability to read reviews of the music uploaded by different users.
+    - I want to have the option to edit my reviews.
+    - I would like the ability delete my reviews.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+-   ### Site Owner Goals
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+    -  Create a music community sharing the most liked or even disliked albums so that the user and even owner can show relive nostalgic music or find new music.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Design Choices 
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+-   ### Colour Scheme
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Typography
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+-  ### Fonts
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+##  Imagery
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
 
-------
+## Wireframes
 
-## FAQ about the uptime script
+-   ### Desktop view
 
-**Why have you added this script?**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+## Features
 
-**How will this affect me?**
+###  Site Navigation
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+-  ### User site map
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+<img align="center" src="./static/images/site-map.png">  
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+-   ### Current Features
 
-**So….?**
+    - All dynamics of CRUD functionality have been implemented in this site for registered users who are logged in.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
 
-**Can I opt out?**
+    | Function      | Location       | 
+    | ------------- | -------------  | 
+    | Create        | Upload albums  |
+    |               | Upload Artist  |
+    |               | Write Review   |
+    |               | Rate Albums    |
+    | Read          | Read Reviews   | 
+    |               | All Reviews    |
+    | Update        | Edit Review    |
+    |               | Update Rating  | 
+    | Delete        | Reviews& Ratings| 
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+
+    ###  Header  [see here](/static/images/navbar-header.png)
+
+-   ### Navigation bar
+
+    - Upon entering the website, users will be greeted with a clean and easy to read navigation bar indicating where to go(home/rankings/login/register)
+
+    - If they go to the registration link it will allow the user to sign up for a new account and will direct them to their new profile.
+
+    - Jinja if statements were used to ensure only certain navigation links are visible to registered users. Unregistered users will not have access to upload or rate.
+
+
+### Mobile [see here](/static/images/mobile.jpg)
+
+-   ### Navigation bar
+
+    - For mobile and tablet view there is a hamburger icon which will collapses once clicked on to display the navbar menu.
+
+
+###  Log In  [see here](/static/images/log-in-img.png)
+
+-  ### User Log In 
+
+    - Frequent users can log in to accsess additional links to leave reviews on all the latest books.
+
+###  Register  [see here](/static/images/register.png)
+ 
+-  ### Sign Up Page 
+
+    -  New visitors are able to register their details by providing an email address, user name and password to create an account.
+
+
+###  Profile  [see here](/static/images/welcome.png)  
+
+-   ### User Profile  
+
+    - Registered users have access to their profile page that presents a welcome message when logged in.
+
+-   ### User Reviews
+
+    - User reviews are saved to the profile page, including book names, and the dates they were made. Users have the option to edit and delete their reviews.
+
+###  Review books  [see here](/static/images/review.png)
+
+-  ### Add Reviews 
+
+    - Users can add reviews by clicking on the book cover image or pressing the 'write a review' button below. Users are then taken to a page where they can fill out a form that will prompt them to enter a heading and written review. 
+
+###  Read Reviews  [see here](/static/images/my-reviews.jpg)
+
+-  ### Book Reviews 
+
+    - Users can read all reviews made by registered users. 
+
+### Edit Page  [see here](/static/images/edit-reviews.jpg)
+
+-  ### Edit Reviews
+
+   - Users are able to edit and update their reviews using the submit button located at the bottom of the review form.
+
+### Log Out  [see here](/static/images/log-in.jpg)
+
+-  ### Users Logged Out
+
+    - When a user logs out of their account a flash message is displayed that reads "You have been logged out" to inform the user they have logged out.
+
+### Account Settings  [see here](/static/images/account-settings.jpg)
+
+-  ### User Account 
+
+    - All users have the option to delete their own accounts where necessary.
+
+### App banner  [see here](/static/images/app-download.png)
+
+-  ### App Store 
+
+    - At the bottom of every page users will find links to download the Book Hub app.
+
+### Footer  [see here](/static/images/app-download.png)
+
+-  ### Links 
+
+    - The footer contains links to social media.
+
+    - Copyright information can be found here.    
+
+
+    ###  Features
+
+-  ### Future Features
+
+    - To add an online payment system that allows users to buy books directly from the website.
+
+    - To give users the option to add star ratings.
+
+    - To allow users to add friends to their profile.
+
+## Database Layout
+
+-  ### Collections
+
+    | Title         | Field          | Data Type |
+    | ------------- | -------------  | --------- |
+    | albums        | _id            | ObjectId  |
+    |               | album_name     | string    |
+    |               | artist_id      | string    |
+    |               | image_url      | string    |
+    |               | created_by     | string    |
+    
+
+    | Title         | Field          | Data Type |
+    | ------------- | -------------  | --------- |
+    | artists       | _id            | ObjectId  |
+    |               | artist_name    | string    |
+
+
+    | Title         | Field          | Data Type |
+    | ------------- | -------------  | --------- |
+    | ratings       | _id            | ObjectId  |
+    |               | album_id       | ObjectId  |
+    |               | rating         | string    |
+    |               | review         | string    |
+    |               | created_by     | string    |
+
+
+    | Title         | Field          | Data Type |
+    | ------------- | -------------  | --------- |
+    | users         | _id            | ObjectId  |
+    |               | username       | string    |
+    |               | email_address  | string    |
+    |               | password       | string    |
+   
+    
+## Technologies Used
+
+### Languages Used
+
+-   ### [HTML5](https://en.wikipedia.org/wiki/HTML5)
+    -   Used as the main markup lanuage for the website content.
+-   ### [CSS3](https://en.wikipedia.org/wiki/CSS)
+    -   Used to add styling to the website.
+-   ### [Python3](https://en.wikipedia.org/wiki/Python)
+    -   Used to run the site and speak to the mongodb database.
+-   ### [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+    -   Used to validate the materialize inputs.
+
+### Database Used
+
+-   ### [MongoDB Atlas](https://cloud.mongodb.com/)
+    -   Used to store structured user and book review data.
+
+### Frameworks & Libraries
+
+-  ### [JQuery](https://jquery.com/)
+    -  Used for the initialisation of Materialize CSS components
+-  ### [Materialize:](https://getbootstrap.com/docs/5.0/getting-started/download/) 
+    -  Used to design a mobile-first responsive website along with custom components
+-  ### [Flask](https://en.wikipedia.org/wiki/Flask)
+    -  Used as a lightweight WSGI web application framework
+-  ### [PyMongo](https://docs.mongodb.com/drivers/pymongo/)
+    -  A Python distribution containing tools for working with MongoD
+-  ### [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
+    -  Flask-PyMongo bridges Flask and PyMono
+-  ### [Werkzeug](https://de.wikipedia.org/wiki/Werkzeug)
+    -  A comprehensive WSGI web application library
+-  ### [itsDangerous](https://itsdangerous.palletsprojects.com/en/2.0.x/)
+    -  Allows data to be sent and received safely using python and secret keys
+-  ### [DNSPython](https://pypi.org/project/dnspython/)
+    -  A DNS toolkit for Python
+-  ### [Jinja2](https://jinja.palletsprojects.com/en/3.0.x/)
+    -  Jinja2 is a full-featured template engine for python    
+-  ### [Click](https://click.palletsprojects.com/en/8.0.x/)
+    -  A Python package for creating beautiful command line interfaces 
+
+
+### Programs Used
+
+-  ### [Heroku](https://id.heroku.com/)
+    -  Used to deploy, manage, and scale modern apps
+-  ### [Gitpod](https://www.gitpod.io/)
+    -  An online IDE linked to the GitHub repository used to write my code.    
+-  ### [Git](https://git-scm.com/)
+    -  Git was used for version control by utilizing the Gitpod terminal to commit to Git and Puch to GitHub
+-  ### [GitHub](https://github.com/)
+    -  GitHub is used to store project codes after being pushed from the Gitpod    terminal
+-  ### [JSHint](https://jshint.com/) 
+    -  Used to detect errors in the JavaScript files 
+-  ### [Google Fonts](https://fonts.google.com/)
+    -  Google fonts were used to import 'Yeseva One' for the main website logo
+-  ### [Font Awesome](https://fontawesome.com/) 
+    -  Font Awesome were used on all social icons of the website.
+-  ### [Affinity Designer](https://affinity.serif.com/en-gb/designer/)
+    -  Affinity Designer was used to create the hero background image for the website
+-  ### [Balsamiq](https://balsamiq.com/)
+    - Balsamiq was used to create the wireframes during the design process
+
+## Testing
+
+-  ### All testing can be found [here](TESTING.md) 
+
+## Deployment
+
+### The project was developed using [Gitpod](https://www.gitpod.io/) and pushed to [GitHub](https://github.com/) then deployed on
+Heroku using the following steps...    
+ 
+1. Create requirements.txt file using command pip3 freeze --local > requirements.txt
+2. Create a Procfile with the terminal command echo web: python app.py > Procfile and at this point checking the Procfile to make sure there is no stray line as this can cause issues when deploying to Heroku.
+3. The new requirements file and Procfile committed to GitHub.
+4. New app created in Heroku by clicking "New" and "Create New App" and giving it an original name and setting the region to closest to location.
+5. From Heroku dashboard click "Deploy" -> "Deployment Method" and select "GitHub"
+6. Search for GitHub repo and connect.
+7. In the dashboard click "Settings" -> "Reveal Config Vars"
+8. Set config vars:
+
+- ## Table
+
+    | Key           | Location        | 
+    | ------------- | -------------   | 
+    | PORT          | 5000            | 
+    | IP            | 0.0.0.0         |
+    | SECRET_KEY    | USER_SECRET_KEY |
+    | MONGO_URI     | USER_MONGO_URI  | 
+    | MONGO_DBNAME  | book_hub        |
+ 
+  
+## GitHub Pages
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
+   Alternatively Click [Here](https://raw.githubusercontent.com/) for a GIF demonstrating the process starting from Step 2.
+3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
+4. Under "Source", click the dropdown called "None" and select "Master Branch".
+5. The page will automatically refresh.
+6. Scroll back down through the page to locate the now published site [link](https://github.com) in the "GitHub Pages" section.
+
+### Forking the GitHub Repository
+
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. You should now have a copy of the original repository in your GitHub account.
+
+### Making a Local Clone
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+ 5. Change the current working directory to the location where you want the cloned directory to be made.
+ 6. Type `git clone`, and then paste the URL you copied in Step 3.
 
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
+    $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 ```
 
-**Anything more?**
+        7. Press Enter. Your local clone will be created.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
+```
+    $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+    > Cloning into `CI-Clone`...
+    > remote: Counting objects: 10, done.
+    > remote: Compressing objects: 100% (8/8), done.
+    > remove: Total 10 (delta 1), reused 10 (delta 1)
+    > Unpacking objects: 100% (10/10), done.
+```
 ---
 
-Happy coding!
+## Credits
+
+-   ### Code
+
+    - The Code Institute material was the main source of information used to create this project.
+
+    - Materialize CSS Library used throughout the project mainly to make site responsive using the Grid System [https://materializecss.com/](https://materializecss.com/)
+
+-   ### Content
+
+    -  All content was written by the developer.
+
+    -  Psychological properties of colours text in the README.md was found - [here](http://www.colour-affects.co.uk/psychological-properties-of-colours)
+
+    - w3schools was used as a general source of knowledge.
+
+    - Materialize for creating a responsive website.
+
+-   ### Media
+
+    -  Hero Image was created by the developer using affinity designer to crop and edit photo on to background [Affinity Designer](https://affinity.serif.com/en-gb/designer/)
+
+    - All Images on the site were sourced from [Amazon.co.uk](https://www.amazon.co.uk/)
+
+  
+-   ### Acknowledgements
+
+    - Code Institute for their support and providing all of the necessary material.

@@ -29,6 +29,10 @@ def get_album_from_rating(rating_id):
     return {"album": album["album_name"], "artist": artist["artist_name"], "image": album["image_url"]}
 
 def get_combined_data():
+    """
+    Code by the developer.
+    Combines data to be displayable in other functions
+    """
 
     album_combined = []
     albums = mongo.db.albums.find()
@@ -77,7 +81,11 @@ def get_combined_data():
 
 @app.route("/")
 def index():
-
+    """
+    Code by the developer.
+    Used to show the top rated albums 
+    and most recent albums on the home page
+    """
     album_combined = get_combined_data()
     latest_uploads = album_combined[-3:]
         
@@ -205,9 +213,12 @@ def upload():
     Code by the developer.
     Uploads an album and sends data to db
     """
-
     artists = mongo.db.artists.find().sort("artist_name", 1)
     if request.method == "POST":
+        if not request.form.get("artist_name"):
+            flash("You must supply an artist name!")
+            return render_template("upload.html", artists=artists)
+
         album = {
             "album_name": request.form.get("album_name"),
             "artist_id": request.form.get("artist_name"),
@@ -234,8 +245,16 @@ def upload():
 
 @app.route("/upload_artist", methods=["GET", "POST"])
 def upload_artist():
-
+    """
+    Code by the developer.
+    Checks to see if artist is uploaded
+    And uploads artist if not
+    """
     if request.method == "POST":
+        if len(request.form.get("artist_name")) == 0:
+            flash("Artist is required!")
+            return redirect(url_for("upload"))
+
         # Checks to see if artist name exists in db
         existing_artist = mongo.db.artists.find_one(
             {"artist_name": request.form.get("artist_name")})
@@ -258,9 +277,14 @@ def upload_artist():
 
 @app.route("/edit_rating/<rating_id>", methods=["GET", "POST"])
 def edit_rating(rating_id):
+    """
+    Code by the developer.
+    Edits existing rating and updates it to send to db
+    """
     rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
     album_details = get_album_from_rating(rating_id)
     if request.method == "POST":
+        # sends edited data to db
         submit = {
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
@@ -275,6 +299,10 @@ def edit_rating(rating_id):
 
 @app.route("/delete_rating/<rating_id>")
 def delete_rating(rating_id):
+    """
+    Code from Code Institure.
+    Deletes rating
+    """
     mongo.db.ratings.delete_one({"_id": ObjectId(rating_id)})
     flash("Rating Successfully Deleted")
     return redirect(url_for("rankings"))
@@ -283,11 +311,12 @@ def delete_rating(rating_id):
 @app.route("/rankings", methods=["GET", "POST"])
 def rankings():
     """
-    Code by the developer.
-    Compiles information input by all users and puts them ranked
+    Code by the developer/mentor Matt Rudge.
+    Compiles information input by all users 
+    and puts them ranked in paginated rows
     """
-
     if request.method == "POST":
+        # user can rate album if not previous rated
         submit = {
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
