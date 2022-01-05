@@ -134,7 +134,7 @@
 <div class="section white">
     <div class="row container">
         <h2 class="header center">Recently Upload Albums</h2>
-        {% for album, info in latest[0].items() %}
+        {% for album, info in latest[2].items() %}
         <div class="col s4 hide-on-small-only">
             <div class="card-content home-content">
                 <h4 class="card-title">{{ info["album_name"]|truncate(12, True, '...', 0) }}</h4>
@@ -157,7 +157,7 @@
             </div>
         </div>
         {% endfor %}
-        {% for album, info in latest[2].items() %}
+        {% for album, info in latest[0].items() %}
         <div class="col s4 hide-on-small-only">
             <div class="card-content home-content">
                 <h4 class="card-title">{{ info["album_name"]|truncate(12, True, '...', 0) }}</h4>
@@ -183,7 +183,6 @@
         </div>
         {% endfor %}
         {% for album, info in latest[1].items() %}
-
         <div class="col s6 show-on-small hide-on-med-and-up">
             <div class="card-content home-content">
                 <h4 class="card-title">{{ info["album_name"]|truncate(12, True, '...', 0) }}</h4>

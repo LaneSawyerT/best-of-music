@@ -26,7 +26,9 @@ def get_album_from_rating(rating_id):
     album = mongo.db.albums.find_one({"_id": ObjectId(rating["album_id"])})
     artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
 
-    return {"album": album["album_name"], "artist": artist["artist_name"], "image": album["image_url"]}
+    return {"album": album["album_name"], "artist": artist["artist_name"],
+            "image": album["image_url"]}
+
 
 def get_combined_data():
     """
@@ -41,8 +43,12 @@ def get_combined_data():
 
     for album in albums:
         album_combined.append({})
-        album_combined[index]["album"] = {"album_name": album["album_name"], "rating": 0, "artist_name": "", "image_url": "", "number_of_ratings": 0, "album_id": "", "reviews": []}
-        artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
+        album_combined[index]["album"] = {"album_name": album["album_name"],
+                                          "rating": 0, "artist_name": "",
+                                          "image_url": "", "number_of_ratings":
+                                          0, "album_id": "", "reviews": []}
+        artist = mongo.db.artists.find_one({"_id":
+                                            ObjectId(album["artist_id"])})
         album_combined[index]["album"]["artist_name"] = artist["artist_name"]
         album_combined[index]["album"]["image_url"] = album["image_url"]
         album_combined[index]["album"]["album_id"] = album["_id"]
@@ -54,9 +60,11 @@ def get_combined_data():
             score = int(rating["rating"])
             review = rating["review"]
             user = rating["created_by"]
-            album_combined[index]["album"]["reviews"].append({"rating": score, "review": review, "user": user})
+            album_combined[index]["album"]["reviews"].append({
+                "rating": score, "review": review, "user": user})
             running_total += score
-            count +=1
+            count += 1
+
         try:
             average = running_total/count
         except ZeroDivisionError:
@@ -65,7 +73,10 @@ def get_combined_data():
         album_combined[index]["album"]["number_of_ratings"] = count
 
         if "user" in session:
-            edited = mongo.db.ratings.count_documents({"album_id": album["_id"], "created_by": session["user"]})
+            edited = mongo.db.ratings.count_documents({"album_id":
+                                                      album["_id"],
+                                                       "created_by":
+                                                      session["user"]})
         else:
             edited = 1
 
@@ -83,16 +94,16 @@ def get_combined_data():
 def index():
     """
     Code by the developer.
-    Used to show the top rated albums 
+    Used to show the top rated albums
     and most recent albums on the home page
     """
     album_combined = get_combined_data()
     latest_uploads = album_combined[-3:]
-        
+
     album_combined.sort(key=lambda item: item["album"]["rating"], reverse=True)
 
-    return render_template("index.html", artists=album_combined, latest=latest_uploads)
-
+    return render_template("index.html", artists=album_combined,
+                           latest=latest_uploads)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -105,7 +116,7 @@ def register():
         # Check if email already exists in db
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
-        
+
         if existing_email:
             flash("Email already used")
             return redirect(url_for("register"))
@@ -147,8 +158,8 @@ def login():
 
         if existing_user:
             # Makes sure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"],
+               request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
                     return redirect(url_for(
@@ -178,21 +189,26 @@ def profile():
         ratings = mongo.db.ratings.find({"created_by": session["user"]})
         for rating in ratings:
             print(rating["album_id"])
-            album = mongo.db.albums.find_one({"_id": ObjectId(rating["album_id"])})
+            album = mongo.db.albums.find_one({"_id":
+                                             ObjectId(rating["album_id"])})
             album_name = album["album_name"]
-            artist = mongo.db.artists.find_one({"_id": ObjectId(album["artist_id"])})
+            artist = mongo.db.artists.find_one({"_id":
+                                                ObjectId(album["artist_id"])})
             ratings_combined.append({album_name: {}})
             ratings_combined[index][album_name]["rating"] = rating["rating"]
             ratings_combined[index][album_name]["review"] = rating["review"]
-            ratings_combined[index][album_name]["artist"] = artist["artist_name"]
-            ratings_combined[index][album_name]["image_url"] = album["image_url"]
-            ratings_combined[index][album_name]["rating_id"] = rating["_id"]
+            ratings_combined[index][album_name]["artist"] = \
+                artist["artist_name"]
+            ratings_combined[index][album_name]["image_url"] = \
+                album["image_url"]
+            ratings_combined[index][album_name]["rating_id"] = \
+                rating["_id"]
             index += 1
 
         print(ratings_combined)
-        return render_template("profile.html", data=ratings_combined, username=session["user"])
+        return render_template("profile.html", data=ratings_combined,
+                               username=session["user"])
     else:
-        
         return render_template("index.html")
 
 
@@ -289,12 +305,14 @@ def edit_rating(rating_id):
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
         }
-        mongo.db.ratings.update_one({"_id": ObjectId(rating_id)}, {'$set': submit})
+        mongo.db.ratings.update_one({"_id": ObjectId(rating_id)},
+                                    {'$set': submit})
         flash("Rating Successfully Updated")
         return redirect(url_for("profile"))
         return render_template("profile.html")
 
-    return render_template("edit_rating.html", rating=rating, album=album_details)
+    return render_template("edit_rating.html", rating=rating,
+                           album=album_details)
 
 
 @app.route("/delete_rating/<rating_id>")
@@ -312,7 +330,7 @@ def delete_rating(rating_id):
 def rankings():
     """
     Code by the developer/mentor Matt Rudge.
-    Compiles information input by all users 
+    Compiles information input by all users
     and puts them ranked in paginated rows
     """
     if request.method == "POST":
@@ -327,9 +345,7 @@ def rankings():
         flash("Rating Successfully Added")
 
     album_combined = get_combined_data()
-        
     album_combined.sort(key=lambda item: item["album"]["rating"], reverse=True)
-    
     page_num = int(request.args["page"]) if "page" in request.args else 1
 
     num_per_page = 6
@@ -349,10 +365,12 @@ def rankings():
 
     recordset = album_combined[start:end]
 
-    return render_template("rankings.html", is_paginated=is_paginated, active_page=page_num, data=recordset, num_pages=num_pages)
+    return render_template("rankings.html", is_paginated=is_paginated,
+                           active_page=page_num, data=recordset,
+                           num_pages=num_pages)
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-        port=int(os.environ.get("PORT")),
-        debug=True)
+            port=int(os.environ.get("PORT")),
+            debug=True)
