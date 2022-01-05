@@ -112,13 +112,16 @@ def register():
     Code by the developer.
     Registers the user and send data to db
     """
+    if "user" in session:
+        return redirect(url_for("index"))
+
     if request.method == "POST":
         # Check if email already exists in db
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
         if existing_email:
-            flash("Username/Email already in use")
+            flash("Email Already In Use")
             return redirect(url_for("register"))
 
         # Check if username already exists in db
@@ -126,7 +129,7 @@ def register():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            flash("Username/Email already in use")
+            flash("Username Already Exists")
             return redirect(url_for("register"))
 
         register = {
@@ -183,6 +186,10 @@ def profile():
     Code by the developer.
     Grabs the username from db and displays their uploaded info
     """
+
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     if session["user"]:
         index = 0
         ratings_combined = []
@@ -218,6 +225,10 @@ def logout():
     Code by the developer.
     Removes user from session
     """
+
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
@@ -229,6 +240,10 @@ def upload():
     Code by the developer.
     Uploads an album and sends data to db
     """
+
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     artists = mongo.db.artists.find().sort("artist_name", 1)
     if request.method == "POST":
         if not request.form.get("artist_name"):
@@ -266,6 +281,10 @@ def upload_artist():
     Checks to see if artist is uploaded
     And uploads artist if not
     """
+
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         if len(request.form.get("artist_name")) == 0:
             flash("Artist is required!")
@@ -297,6 +316,10 @@ def edit_rating(rating_id):
     Code by the developer.
     Edits existing rating and updates it to send to db
     """
+
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
     album_details = get_album_from_rating(rating_id)
     if request.method == "POST":
@@ -321,6 +344,7 @@ def delete_rating(rating_id):
     Code from Code Institure.
     Deletes rating
     """
+
     mongo.db.ratings.delete_one({"_id": ObjectId(rating_id)})
     flash("Rating Successfully Deleted")
     return redirect(url_for("rankings"))
@@ -333,6 +357,7 @@ def rankings():
     Compiles information input by all users
     and puts them ranked in paginated rows
     """
+
     if request.method == "POST":
         # user can rate album if not previous rated
         submit = {

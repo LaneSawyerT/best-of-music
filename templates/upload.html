@@ -21,7 +21,6 @@
             <div class="card upload-content">
                 <div class="card-content">
                     <span class="card-title upload-heading">Upload a New Album</span>
-
                     <div class="row">
                         <form class="col s12" method="POST">
                             <div class="row">
@@ -50,8 +49,8 @@
                                 <div class="col s12 center show-on-small hide-on-med-and-up">
                                     <div class="input-field center">
                                         <a class="waves-effect waves-light btn-small"
-                                            href="{{ url_for('upload_artist') }}"><i class="material-icons "></i>Upload a
-                                            New Artist</a>
+                                            href="{{ url_for('upload_artist') }}"><i class="material-icons "></i>Upload
+                                            a New Artist</a>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +58,6 @@
                                 <!-- Album Name -->
                                 <div class="input-field col s10 offset-s1">
                                     <i class="fas fa-compact-disc prefix light-grey-text text-darken-4"></i>
-
                                     <input placeholder="Album Name" id="album_name" name="album_name" type="text"
                                         class="validate" minlength="1" maxlength="20" required>
                                     <label for="album_name">Enter an Album</label> </div>
@@ -68,7 +66,7 @@
                                 <!-- Image -->
                                 <div class="input-field col s10 offset-s1">
                                     <i class="fas fa-images prefix light-grey-text text-darken-4"></i>
-                                    <input placeholder="Image URL" id="image_url" name="image_url" type="text" required>
+                                    <input placeholder="Image URL" id="image_url" name="image_url" type="text" class="validate" onchange="check()"  onblur="check()" required>
                                     <label for="image_url">Enter Image URL</label> </div>
                             </div>
 
@@ -95,7 +93,7 @@
                             <!-- Submit Button -->
                             <div class="row submit-button">
                                 <div class="card-action col s12">
-                                    <button class="btn-large waves-effect waves-light" type="submit" name="action">
+                                    <button id="submit" class="btn-large waves-effect waves-light" type="submit" name="action">
                                         Submit
                                     </button>
                                 </div>
@@ -109,10 +107,22 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, options);
-    });
+    document.getElementById("image_url").addEventListener("keyup", check);
+    function check() {
+        var el = document.getElementById("image_url");
+        var button = document.getElementById("submit");
+        
+        var regex = /\.(jpg|png|gif|bmp)$/i;
+        if(regex.test(el.value)) {
+            el.classList.remove("valid");
+            el.classList.add("invalid");
+            button.removeAttribute("disabled");
+        } else {
+            el.classList.remove("valid");
+            el.classList.add("invalid");
+            button.setAttribute("disabled", "True");
+        }
+    }
 </script>
 
 {% endblock %}

@@ -202,16 +202,8 @@ This is the website for Best of Music. A community that will allow users to uplo
 
     - Copyright information can be found here.    
 
-
     ###  Features
 
--  ### Future Features
-
-    - To add an online payment system that allows users to buy books directly from the website.
-
-    - To give users the option to add star ratings.
-
-    - To allow users to add friends to their profile.
 
 ## Database Layout
 
@@ -254,29 +246,29 @@ This is the website for Best of Music. A community that will allow users to uplo
 ### Languages Used
 
 -   ### [HTML5](https://en.wikipedia.org/wiki/HTML5)
-    -   Used as the main markup lanuage for the website content.
+    -   Used as the main markup language for the information.
 -   ### [CSS3](https://en.wikipedia.org/wiki/CSS)
     -   Used to add styling to the website.
 -   ### [Python3](https://en.wikipedia.org/wiki/Python)
-    -   Used to run the site and speak to the mongodb database.
+    -   Used to make the site run and speak to the mongodb database.
 -   ### [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-    -   Used to validate the materialize inputs.
+    -   Used to validate the Materialize forms and functionalities 
 
 ### Database Used
 
 -   ### [MongoDB Atlas](https://cloud.mongodb.com/)
-    -   Used to store structured user and book review data.
+    -   Used to store usernames, albums, ratings and artists
 
 ### Frameworks & Libraries
 
 -  ### [JQuery](https://jquery.com/)
     -  Used for the initialisation of Materialize CSS components
 -  ### [Materialize:](https://getbootstrap.com/docs/5.0/getting-started/download/) 
-    -  Used to design a mobile-first responsive website along with custom components
+    -  Used to design a mobile responsive website along with custom components
 -  ### [Flask](https://en.wikipedia.org/wiki/Flask)
     -  Used as a lightweight WSGI web application framework
 -  ### [PyMongo](https://docs.mongodb.com/drivers/pymongo/)
-    -  A Python distribution containing tools for working with MongoD
+    -  A Python distribution containing tools for working with Mongo
 -  ### [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
     -  Flask-PyMongo bridges Flask and PyMono
 -  ### [Werkzeug](https://de.wikipedia.org/wiki/Werkzeug)
@@ -303,12 +295,10 @@ This is the website for Best of Music. A community that will allow users to uplo
     -  GitHub is used to store project codes after being pushed from the Gitpod    terminal
 -  ### [JSHint](https://jshint.com/) 
     -  Used to detect errors in the JavaScript files 
--  ### [Google Fonts](https://fonts.google.com/)
-    -  Google fonts were used to import 'Yeseva One' for the main website logo
 -  ### [Font Awesome](https://fontawesome.com/) 
     -  Font Awesome were used on all social icons of the website.
--  ### [Affinity Designer](https://affinity.serif.com/en-gb/designer/)
-    -  Affinity Designer was used to create the hero background image for the website
+-  ### [Fotor](https://www.fotor.com/)
+    -  Fotor was used to create the background image for the index page and the logo
 -  ### [Balsamiq](https://balsamiq.com/)
     - Balsamiq was used to create the wireframes during the design process
 
@@ -400,11 +390,15 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 
     - w3schools was used as a general source of knowledge.
 
+    - [Dev.io](https://dev.to/kpulkit29/custom-validation-in-materialize-css-1p0e) Was used to validate the Image URL
+
+    - [Matt Rudge Pagination](https://github.com/lechien73/paginate_test) Pagination_test was used to help paginate the rankings with mentor Matt Rudge's help
+
     - Materialize for creating a responsive website.
 
 -   ### Media
 
-    -  Hero Image was created by the developer using affinity designer to crop and edit photo on to background [Affinity Designer](https://affinity.serif.com/en-gb/designer/)
+    -  Logo Image and Home Page Background was created by the developer using Fotor to crop and edit photo and using their custom etxt [Fotor](https://www.fotor.com/)
 
     - All Images on the site were sourced from [Amazon.co.uk](https://www.amazon.co.uk/)
 
