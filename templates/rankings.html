@@ -29,7 +29,8 @@
                     <span class="card-title">{{ info["album_name"] }}</span>
                     <p>{{ info["artist_name"] }}</p>
                     <p>{{ info["rating"] }}</p>
-                    <img class="materialboxed album-image" alt="Album Cover" width="150" height="150" src="{{ info['image_url'] }}">
+                    <img class="materialboxed album-image" alt="Album Cover" width="150" height="150"
+                        src="{{ info['image_url'] }}">
                 </div>
                 <div class="divider"></div>
                 <!-- Modal Button Tablet/Desktop -->
@@ -38,7 +39,7 @@
                         href="#{{ info['album_id'] }}">Info</a>
                 </div>
 
-                <!-- Album Modal Info -->
+                <!-- Album Modal Info(Tablet/Desktop) -->
                 <div id="{{ info['album_id'] }}" class="modal modal-fixed-footer modal-desktop">
                     <div class="modal-content hide-on-small-only">
                         <div class="row">
@@ -48,17 +49,21 @@
                                 <p>{{ info["artist_name"] }}</p>
                                 <p>{{ info["rating"] }}</p>
 
-                                <img class="materialboxed" alt="Album Cover" width="150" height="150" src="{{ info['image_url'] }}">
+                                <img class="materialboxed" alt="Album Cover" width="150" height="150"
+                                    src="{{ info['image_url'] }}">
                                 {% endfor %}
                             </div>
-
+                            <!--Review on Desktop/Tablet-->
                             <div class="col s6 reviews">
                                 {% for review in info["reviews"] %}
                                 <p>{{ review["review"] }}</p>
                                 <p>{{ review["rating"] }}&emsp;&emsp;&emsp;&emsp; Rated By : {{ review["user"] }}</p>
 
                                 {% endfor%}
+                                <p>Scroll Down to revieew and rate</p>
                             </div>
+                            <br>
+                            <p>Scroll Down to Review and Rate!</p>
                         </div>
                         <div class="row">
                             {% if session.user %}
@@ -100,11 +105,12 @@
                                 </div>
                             </form>
                             {% else %}
-                            <p>You've already rated this, go back to edit.</p>
+                            <p>You've already rated this, <a href="{{ url_for('profile', username=session['user']) }}">
+                                    Click here to Edit</a>.</p>
                             {% endif %}
 
                             {% else %}
-                            Sign Up to start rating today!
+                            <a href="{{ url_for('register') }}">Click here to sign up and start rating now!</a>
                             {% endif %}
                         </div>
 
@@ -129,7 +135,7 @@
     <div class="row hide-on-med-and-up show-on-small">
         {% for d in data %}
         {% for album, info in d.items() %}
-        <!-- Top Rated Albums -->
+        <!-- Top Rated Albums(mobile) -->
         <div class="col s6">
             <div class="card rankings-content">
                 <div class="card-content">
@@ -137,10 +143,11 @@
                     <span class="card-title">{{ info["album_name"] }}</span>
                     <p>{{ info["artist_name"] }}</p>
                     <p>{{ info["rating"] }}</p>
-                    <img class="materialboxed album-image" alt="Album Cover" width="100" height="100" src="{{ info['image_url'] }}">
+                    <img class="materialboxed album-image" alt="Album Cover" width="100" height="100"
+                        src="{{ info['image_url'] }}">
                 </div>
                 <div class="divider"></div>
-                <!-- Modal Button Mobile -->
+                <!-- Modal Button(mobile) -->
                 <div class="center-align hide-on-med-and-up">
                     <a class="waves-effect waves-light btn modal-trigger info-button"
                         href="#mob{{ info['album_id'] }}">Info</a>
@@ -148,7 +155,7 @@
 
                 <!-- Mobile Modal-->
 
-                <div id="mob{{ info['album_id'] }}" class="modal modal-rankings modal-fixed-footer">
+                <div id="mob{{ info['album_id'] }}" class="modal modal-rankings modal-mobile modal-fixed-footer">
                     <div class="modal-content">
                         <div class="row">
                             <div class="col s6">
@@ -156,7 +163,8 @@
                                 <h5>{{ info["album_name"] }}</h5>
                                 <p>{{ info["artist_name"] }}</p>
                                 <p>{{ info["rating"] }}</p>
-                                <img class="materialboxed" alt="Album Cover" width="100" height="100" src="{{ info['image_url'] }}">
+                                <img class="materialboxed" alt="Album Cover" width="100" height="100"
+                                    src="{{ info['image_url'] }}">
                                 {% endfor %}
                             </div>
                             <div class="col s6">
@@ -170,13 +178,14 @@
                                 </div>
                             </div>
                         </div>
+                        {% if session.user %}
                         {% if not info["already_edited"] %}
                         <form action="/rankings" method="POST">
                             <input type="hidden" name="album_id" value="{{ info['album_id'] }}" />
                             <div class="row">
-        
+
                                 <div class="col s10 offset-m2">
-                                    <!-- Rating -->
+                                    <!-- Rating(mobile) -->
                                     <div class="input-field ">
                                         <p class="range-field">
                                             <label for="range" class="label-heading">Rate</label>
@@ -185,7 +194,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Review -->
+                            <!-- Review(mobile) -->
                             <div class="row">
                                 <div class="input-field col s12">
                                     <textarea id="review" name="review" class="materialize-textarea"></textarea>
@@ -202,8 +211,14 @@
                             </div>
                         </form>
                         {% else %}
-                        <p>You've already rated this, go back to edit.</p>
+                        <p>You've already rated this, <a href="{{ url_for('profile', username=session['user']) }}">
+                                Click here to Edit</a>.</p>
                         {% endif %}
+
+                        {% else %}
+                        <a href="{{ url_for('register') }}">Click here to sign up and start rating now!</a>
+                        {% endif %}
+
                         <div class="row">
                             <div class="mobile-footer modal-footer">
                                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
@@ -229,26 +244,26 @@
 
 <!-- Pagination -->
 <div class="container">
-{% if is_paginated %}
-<ul class="pagination center">
-    {% if active_page == 1 %}
-    <li class="disabled"><a href="#!"><i class="fas fa-chevron-left"></i></a></li>
-    {% else %}
-    <li><a href="?page={{ active_page - 1 }}"><i class="fas fa-chevron-left"></i></a></li>
-    {% endif %}
-    {% for n in range(num_pages) %}
-    {% if active_page == n + 1 %}
-    <li class="active"><a href="?page={{ n + 1 }}">{{ n + 1 }}</a></li>
-    {% else %}
-    <li class="waves-effect"><a href="?page={{ n + 1 }}">{{ n + 1 }}</a></li>
-    {% endif %}
-    {% endfor %}
-    {% if active_page == num_pages %}
-    <li class="disabled"><a href="#!"><i class="fas fa-chevron-right"></i></a></li>
-    {% else %}
-    <li><a href="?page={{ active_page + 1 }}"><i class="fas fa-chevron-right"></i></a></li>
-    {% endif %}
-</ul>
+    {% if is_paginated %}
+    <ul class="pagination center">
+        {% if active_page == 1 %}
+        <li class="disabled"><a href="#!"><i class="fas fa-chevron-left"></i></a></li>
+        {% else %}
+        <li><a href="?page={{ active_page - 1 }}"><i class="fas fa-chevron-left"></i></a></li>
+        {% endif %}
+        {% for n in range(num_pages) %}
+        {% if active_page == n + 1 %}
+        <li class="active"><a href="?page={{ n + 1 }}">{{ n + 1 }}</a></li>
+        {% else %}
+        <li class="waves-effect"><a href="?page={{ n + 1 }}">{{ n + 1 }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if active_page == num_pages %}
+        <li class="disabled"><a href="#!"><i class="fas fa-chevron-right"></i></a></li>
+        {% else %}
+        <li><a href="?page={{ active_page + 1 }}"><i class="fas fa-chevron-right"></i></a></li>
+        {% endif %}
+    </ul>
 </div>
 {% endif %}
 

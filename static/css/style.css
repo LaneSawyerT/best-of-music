@@ -95,7 +95,7 @@ nav .nav-wrapper {
 }
 
 .delete-modal {
-    width: 25%;
+    width: 45%;
 }
 
 /* Upload Page */
@@ -126,7 +126,6 @@ input[type="range"]+.thumb {
 input[type="range"] {
     border: 1px solid #463f3a;
 }
-
 
 /* Rankings Page */
 .rankings-content {
@@ -181,6 +180,10 @@ input[type="range"] {
 
 .modal-tablet {
     height: auto !important;
+}
+
+.modal-mobile {
+    max-height: 65%;
 }
 
 /* General Adjustments */

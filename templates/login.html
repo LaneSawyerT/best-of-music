@@ -4,13 +4,13 @@
 <section>
     <!-- flash messages -->
     {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
+    {% if messages %}
+    {% for message in messages %}
     <div class="row flashes">
         <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
     </div>
-            {% endfor %}
-        {% endif %}
+    {% endfor %}
+    {% endif %}
     {% endwith %}
 </section>
 
@@ -19,40 +19,37 @@
         <div class="card register-content">
             <div class="card-content">
                 <span class="card-title">Login To Your Account</span>
-                <div class="row">
-                    <form action="/login" method="POST" class="col s12">
-                        <div class="row">
-                            <!-- Username input-->
-                            <div class="input-field col s12">
-                                <i class="fas fa-user-cog prefix light-grey-text text-darken-4"></i>
-                                <input id="username" name="username" type="text" class="validate">
-                                <label for="username">Username</label>
-                            </div>
+                <form action="/login" method="POST">
+                    <div class="row">
+                        <!-- Username input-->
+                        <div class="input-field ">
+                            <i class="fas fa-user-cog prefix light-grey-text text-darken-4"></i>
+                            <input id="username" name="username" type="text" class="validate">
+                            <label for="username">Username</label>
                         </div>
-
-                        <div class="row">
-                            <!-- Password input-->
-                            <div class="input-field col s12">
-                                <i class="fas fa-user-lock prefix light-grey-text text-darken-4"></i>
-                                <input id="password" name="password" type="password" minlength="5" maxlength="15"
-                                    pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
-                                <label for="password">Password</label>
-                            </div>
+                        <!-- Password input-->
+                        <div class="input-field">
+                            <i class="fas fa-user-lock prefix light-grey-text text-darken-4"></i>
+                            <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                                pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                            <label for="password">Password</label>
                         </div>
                         <!-- Login Button -->
-                        <div class="row submit-button"></div>
-                        <div class="card-action">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">
-                                Login <i class="fas fa-sign-in-alt"></i>
-                            </button>
+                        <div class="submit-button">
+                            <div class="card-action">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                    Login <i class="fas fa-sign-in-alt"></i>
+                                </button>
+                            </div>
                         </div>
-
-                </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- New User Register Link-->
 <div class="row">
     <div class="col s12">
         <p class="center-align">

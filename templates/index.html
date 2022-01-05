@@ -5,6 +5,7 @@
             src={{url_for('static', filename='images/bestofmusic.png')}}>
     </div>
 
+    <!-- Register MainPage Card-->
     <div class="row mainpage-register">
         <div class="card register-content">
             <div class="card-content">
@@ -20,7 +21,7 @@
     </div>
 
 </div>
-<!-- For tablet /mobile sizes-->
+<!-- Register MainPage Card for tablet /mobile sizes-->
 <div class="show-on-medium-and-down hide-on-large-only">
     <div class="tablet-image"><img class="responsive-img" alt="Best Of Music Background"
             src={{url_for('static', filename='images/bestofmusic.png')}}>
@@ -51,9 +52,6 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 <!-- Top Rated Albums -->
@@ -124,17 +122,13 @@
         </div>
 
         {% endfor %}
-
         <div class="row">
-            <div>
-                <h5 class="right-align"><a href="{{ url_for('rankings') }}"><br>View All</a></h5>
-            </div>
+            <h5 class="right-align"><a href="{{ url_for('rankings') }}"><br>View All</a></h5>
         </div>
     </div>
 </div>
 
 <div class="divider"></div>
-
 
 <!-- Recently Uploaded Albums -->
 <div class="section white">
@@ -199,12 +193,8 @@
             </div>
         </div>
         {% endfor %}
-
-
         <div class="row ">
-            <div>
-                <h5 class="right-align"><a href="{{ url_for('rankings') }}"><br>View All</a></h5>
-            </div>
+            <h5 class="right-align"><a href="{{ url_for('rankings') }}"><br>View All</a></h5>
         </div>
     </div>
 </div>
