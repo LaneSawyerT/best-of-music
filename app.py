@@ -118,7 +118,7 @@ def register():
             {"email": request.form.get("email").lower()})
 
         if existing_email:
-            flash("Email already used")
+            flash("Username/Email already in use")
             return redirect(url_for("register"))
 
         # Check if username already exists in db
@@ -126,7 +126,7 @@ def register():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            flash("Username already exists")
+            flash("Username/Email already in use")
             return redirect(url_for("register"))
 
         register = {
