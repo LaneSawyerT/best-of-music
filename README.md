@@ -1,6 +1,6 @@
 <h1 align="center">Best of Music</h1>
 
-<img align="center" src="./static/images/bestofmusicresponsive.png">
+<img align="center" src="./readme/bestofmusicresponsive.png">
 
 <h1>About:</h1>
 This is the website for Best of Music. A community that will allow users to upload their favourite artist/albums and rate them accordingly. Users have the ability to see which albums are more recently uploaded and the highest rated albums. Users will also be able to rate the music that is uploaded and edit their own ratings or reviews as they see fit. Best of music is designed to be responsive on all screen sizes and work across multiple devices. Ensuring it is easy for new and existing users to sign up, login, and upload their favourite albums and rate existing ones. 
@@ -81,7 +81,7 @@ Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
 
 -   ### Colour Scheme
 
-<img align="center" src="./static/images/coolors.png">
+<img align="center" src="./readme/coolors.png">
 
 - Coolors was used to get the inspiration for the color theme.
 - #b6ccfe; for the background
@@ -106,13 +106,13 @@ Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
 
 ## Wireframes
 
--   ### [Home](static/images/homewf.png)
--   ### [Profile](static/images/profilewf.png)
--   ### [Login](static/images/loginwf.png)
--   ### [Upload](static/images/uploadwf.png)
--   ### [Upload Artist](static/images/uploadartistwf.png)
--   ### [Ranking](static/images/rankingswf.png)
--   ### [Register](static/images/registerwf.png)
+-   ### [Home](/readme/homewf.png)
+-   ### [Profile](/readme/profilewf.png)
+-   ### [Login](/readme/loginwf.png)
+-   ### [Upload](/readme/uploadwf.png)
+-   ### [Upload Artist](/readme/uploadartistwf.png)
+-   ### [Ranking](/readme/rankingswf.png)
+-   ### [Register](/readme/registerwf.png)
 
 
 
@@ -121,7 +121,7 @@ Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
 
 -  ### User site map
 
-<img align="center" src="./static/images/site-map.png">  
+<img align="center" src="./readme/site-map.png">  
 
 -   ### Current Features
 
@@ -141,7 +141,7 @@ Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
     | Delete        | Reviews& Ratings| 
 
 
-    ###  Header  [see here](/static/images/navbar.png)
+    ###  Header  [see here](/readme/navbar.png)
 
 -   ### Navigation bar
 
@@ -152,65 +152,65 @@ Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
     - Jinja if statements were used to ensure only certain navigation links are visible to registered users. Unregistered users will not have access to upload or rate.
 
 
-### Mobile [see here](/static/images/navbarmobile.png)
+### Mobile [see here](/readme/navbarmobile.png)
 
 -   ### Navigation bar
 
     -  Here is the mobile navigation bar users will use when they are viewing from the mobile.
 
 
-###  Log In  [see here](/static/images/login.png)
+###  Log In  [see here](/readme/login.png)
 
 -  ### User Log In 
 
     - The page that the users will use to login.
 
-###  Register  [see here](/static/images/register.png)
+###  Register  [see here](/readme/register.png)
  
 -  ### Register Page 
 
     -  Where new users will register to get a new account.
 
-###  Profile  [see here](/static/images/profile.png)  
+###  Profile  [see here](/readme/profile.png)  
 
 -   ### User Profile  
 
     - Returning users will return to this page where they can see their uploaded posts.
 
-###  Rankings  [see here](/static/images/ranking.png)
+###  Rankings  [see here](/readme/ranking.png)
 
 -  ### Rankings page 
 
     - Where users logged in or not can see the highest rated albums
 
-###  Ranking Modals  [see here](/static/images/ratingmodal.png)
+###  Ranking Modals  [see here](/readme/ratingmodal.png)
 
 -  ###  Ranking Modal info
 
     - Where users can see the reviews and info of what albums are uploaded.
 
-###  Ranking Modals Ratings  [see here](/static/images/ratingmodalRated.png)
+###  Ranking Modals Ratings  [see here](/readme/ratingmodalRated.png)
 
 -  ###  Ranking Modal ratings
 
     - Where users can rate what albums are uploaded.
 
-### Edit Rating  [see here](/static/images/editrating.png)
+### Edit Rating  [see here](/readme/editrating.png)
 
 -  ### Edit Reviews/Reviews
 
    - Users can click from their profile page to edit what they have reviewed or edited.
 
-### Log In  [see here](/static/images/logout.png)
+### Log In  [see here](/readme/logout.png)
 
 - Where users will see when logged in.
 
--  ### Users Logged Out [see here](/static/images/loggedout.png)
+-  ### Users Logged Out [see here](/readme/loggedout.png)
 
     - Where users will see when logged out.
 
 
-### Footer  [see here](/static/images/footer.png)
+### Footer  [see here](/readme/footer.png)
 
 -  ### Links 
 

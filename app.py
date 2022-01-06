@@ -1,4 +1,3 @@
-from bson import ObjectId
 import os
 from flask import (
     Flask, flash, render_template,
@@ -21,6 +20,10 @@ mongo = PyMongo(app)
 
 
 def get_album_from_rating(rating_id):
+    """
+    Code by the developer.
+    Will combine the rating/album/artist together
+    """
 
     rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
     album = mongo.db.albums.find_one({"_id": ObjectId(rating["album_id"])})
@@ -322,8 +325,8 @@ def edit_rating(rating_id):
 
     rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
     album_details = get_album_from_rating(rating_id)
-    if request.method == "POST":
-        # sends edited data to db
+
+    if session["user"] == rating["created_by"]:
         submit = {
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
@@ -332,7 +335,9 @@ def edit_rating(rating_id):
                                     {'$set': submit})
         flash("Rating/Review Successfully Updated")
         return redirect(url_for("profile"))
-        return render_template("profile.html")
+    else:
+        flash("You can only edit your own ratings!")
+        return redirect(url_for("rankings"))
 
     return render_template("edit_rating.html", rating=rating,
                            album=album_details)
