@@ -79,10 +79,21 @@ This is the website for Best of Music. A community that will allow users to uplo
 
 -   ### Colour Scheme
 
+<img align="center" src="./static/images/coolors.png">
+
+- Coolors was used to get the inspiration for the color theme.
+- #b6ccfe; for the background
+- #463f3a; for the font color
+- 
+
+
+
 
 ## Typography
 
 -  ### Fonts
+
+- Default browser font is used.
 
 
 ##  Imagery
@@ -311,6 +322,8 @@ This is the website for Best of Music. A community that will allow users to uplo
     -  Font Awesome were used on all social icons of the website.
 -  ### [Fotor](https://www.fotor.com/)
     -  Fotor was used to create the background image for the index page and the logo
+-  ### [Coolor](https://www.coolors.com/)
+    -  Coolor was used to get inspiriation for the color theme
 -  ### [Balsamiq](https://balsamiq.com/)
     - Balsamiq was used to create the wireframes during the design process
 
@@ -398,8 +411,6 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 
     -  All content was written by the developer.
 
-    -  Psychological properties of colours text in the README.md was found - [here](http://www.colour-affects.co.uk/psychological-properties-of-colours)
-
     - w3schools was used as a general source of knowledge.
 
     - [Dev.io](https://dev.to/kpulkit29/custom-validation-in-materialize-css-1p0e) Was used to validate the Image URL
@@ -411,8 +422,6 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 -   ### Media
 
     -  Logo Image and Home Page Background was created by the developer using Fotor to crop and edit photo and using their custom etxt [Fotor](https://www.fotor.com/)
-
-    - All Images on the site were sourced from [Amazon.co.uk](https://www.amazon.co.uk/)
 
   
 -   ### Acknowledgements
