@@ -37,7 +37,8 @@
                             <div class="divider"></div>
                             <a href="{{ url_for('edit_rating', rating_id=info['rating_id']) }}"
                                 class="edit-button waves-effect waves-light btn-small">Edit</a>
-                            <button data-target="{{ info['rating_id'] }}" class="profile-button waves-effect waves-light btn-small modal-trigger">Delete</button>
+                            <button data-target="{{ info['rating_id'] }}"
+                                class="profile-button waves-effect waves-light btn-small modal-trigger">Delete</button>
 
                             <!-- Delete Modal Module-->
                             <div id="{{ info['rating_id'] }}" class="modal delete-modal modal-fixed-footer">
@@ -45,14 +46,12 @@
                                     <h4>Delete</h4>
                                     <p>Are you sure you want to delete your rating?</p>
                                     <a href="{{ url_for('delete_rating', rating_id=info['rating_id']) }}"
-                                class="btn-small red accent-4">Delete</a>
-
+                                        class="btn-small red accent-4">Delete</a>
                                 </div>
                                 <div class="modal-footer">
                                     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                                 </div>
                             </div>
-
                             {% endfor %}
                         </div>
                         {% if loop.index is divisibleby 3 %}
@@ -90,14 +89,15 @@
                             <div class="divider"></div>
                             <a href="{{ url_for('edit_rating', rating_id=info['rating_id']) }}"
                                 class="edit-button waves-effect waves-light btn-small">Edit</a>
-                                <button data-target="mob{{ info['rating_id'] }}" class="profile-button waves-effect waves-light btn-small modal-trigger">Delete</button>
-                            
+                            <button data-target="mob{{ info['rating_id'] }}"
+                                class="profile-button waves-effect waves-light btn-small modal-trigger">Delete</button>
+
                             <div id="mob{{ info['rating_id'] }}" class="modal delete-modal modal-fixed-footer">
                                 <div class="modal-content">
                                     <h4>Delete</h4>
                                     <p>Are you sure you want to delete your rating?</p>
                                     <a href="{{ url_for('delete_rating', rating_id=info['rating_id']) }}"
-                                class="btn-small red accent-4">Delete</a>
+                                        class="btn-small red accent-4">Delete</a>
 
                                 </div>
                                 <div class="modal-footer">

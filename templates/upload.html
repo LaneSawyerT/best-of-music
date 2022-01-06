@@ -33,7 +33,7 @@
                                         <option value="{{ artist._id }}"> {{ artist.artist_name }} </option>
                                         {% endfor %}
                                     </select>
-                                    <label for="artist_name">Artist Name</label>
+                                    <label for="artist_name">Artist Name*</label>
                                 </div>
                             </div>
 
@@ -60,14 +60,17 @@
                                     <i class="fas fa-compact-disc prefix light-grey-text text-darken-4"></i>
                                     <input placeholder="Album Name" id="album_name" name="album_name" type="text"
                                         class="validate" minlength="1" maxlength="20" required>
-                                    <label for="album_name">Enter an Album</label> </div>
+                                    <label for="album_name">Enter an Album*</label> </div>
                             </div>
                             <div class="row">
                                 <!-- Image -->
                                 <div class="input-field col s10 offset-s1">
                                     <i class="fas fa-images prefix light-grey-text text-darken-4"></i>
-                                    <input placeholder="Image URL" id="image_url" name="image_url" type="text" class="validate" onchange="check()"  onblur="check()" required>
-                                    <label for="image_url">Enter Image URL</label> </div>
+                                    <input placeholder="Image URL " id="image_url" name="image_url" type="text" class="validate" onchange="check()"  onblur="check()" required>
+                                    <label for="image_url">Enter Image URL*</label>                                 
+                                </div>
+
+                                    
                             </div>
 
                             <div class="row">
@@ -97,6 +100,11 @@
                                         Submit
                                     </button>
                                 </div>
+                                <div class="col s12">
+                                    <p class="center">
+                                        * Required to Submit
+                                    </p>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -105,24 +113,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.getElementById("image_url").addEventListener("keyup", check);
-    function check() {
-        var el = document.getElementById("image_url");
-        var button = document.getElementById("submit");
-        
-        var regex = /\.(jpg|png|gif|bmp)$/i;
-        if(regex.test(el.value)) {
-            el.classList.remove("valid");
-            el.classList.add("invalid");
-            button.removeAttribute("disabled");
-        } else {
-            el.classList.remove("valid");
-            el.classList.add("invalid");
-            button.setAttribute("disabled", "True");
-        }
-    }
-</script>
-
 {% endblock %}

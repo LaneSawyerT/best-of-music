@@ -131,7 +131,6 @@
     </div>
 
     <!-- Added for mobile  -->
-
     <div class="row hide-on-med-and-up show-on-small">
         {% for d in data %}
         {% for album, info in d.items() %}
@@ -154,7 +153,6 @@
                 </div>
 
                 <!-- Mobile Modal-->
-
                 <div id="mob{{ info['album_id'] }}" class="modal modal-rankings modal-mobile modal-fixed-footer">
                     <div class="modal-content">
                         <div class="row">
@@ -232,14 +230,12 @@
 
         {% endfor %}
 
-
         {% if loop.index is divisibleby 2 %}
     </div>
     <div class="row hide-on-med-and-up show-on-small">
         {% endif %}
         {% endfor %}
     </div>
-
 </div>
 
 <!-- Pagination -->

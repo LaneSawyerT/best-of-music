@@ -99,7 +99,7 @@
 
         <div class="col s6 show-on-small hide-on-med-and-up">
             <div class="card-content home-content ">
-                <h5 class="card-title">{{ info["album_name"]|truncate(12, True, '...', 0) }}</h5>
+                <h5 class="card-title">{{ info["album_name"]|truncate(8, True, '...', 0) }}</h5>
                 <p>{{ info["artist_name"] }}</p>
                 <p>{{ info["rating"] }}</p>
                 <img class="materialboxed album-image" alt="Top Rated Album" width="100" height="100"
@@ -113,7 +113,7 @@
 
         <div class="col s6 show-on-small hide-on-med-and-up">
             <div class="card-content home-content ">
-                <h5 class="card-title">{{ info["album_name"]|truncate(12, True, '...', 0) }}</h5>
+                <h5 class="card-title">{{ info["album_name"]|truncate(8, True, '...', 0) }}</h5>
                 <p>{{ info["artist_name"] }}</p>
                 <p>{{ info["rating"] }}</p>
                 <img class="materialboxed album-image" alt="Top Rated Album" width="100" height="100"
@@ -171,10 +171,10 @@
 
         <!--Mobile View-->
 
-        {% for album, info in latest[0].items() %}
+        {% for album, info in latest[2].items() %}
         <div class="col s6 show-on-small hide-on-med-and-up">
             <div class="card-content home-content">
-                <h4 class="card-title">{{ info["album_name"]|truncate(12, True, '...', 0) }}</h4>
+                <h4 class="card-title">{{ info["album_name"]|truncate(8, True, '...', 0) }}</h4>
                 <h5>{{ info["artist_name"] }}</h5>
                 <p>{{ info["rating"] }}</p>
                 <img class="materialboxed album-image" alt="Recent Uploaded Album" width="100" height="100"
@@ -185,7 +185,7 @@
         {% for album, info in latest[1].items() %}
         <div class="col s6 show-on-small hide-on-med-and-up">
             <div class="card-content home-content">
-                <h4 class="card-title">{{ info["album_name"]|truncate(12, True, '...', 0) }}</h4>
+                <h4 class="card-title">{{ info["album_name"]|truncate(8, True, '...', 0) }}</h4>
                 <h5>{{ info["artist_name"] }}</h5>
                 <p>{{ info["rating"] }}</p>
                 <img class="materialboxed album-image" alt="Recent Uploaded Album" width="100" height="100"

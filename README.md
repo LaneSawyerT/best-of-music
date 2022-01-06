@@ -1,5 +1,7 @@
 <h1 align="center">Best of Music</h1>
 
+<img align="center" src="./static/images/bestofmusicresponsive.png">
+
 <h1>About:</h1>
 This is the website for Best of Music. A community that will allow users to upload their favourite artist/albums and rate them accordingly. Users have the ability to see which albums are more recently uploaded and the highest rated albums. Users will also be able to rate the music that is uploaded and edit their own ratings or reviews as they see fit. Best of music is designed to be responsive on all screen sizes and work across multiple devices. Ensuring it is easy for new and existing users to sign up, login, and upload their favourite albums and rate existing ones. 
 
@@ -43,6 +45,7 @@ This is the website for Best of Music. A community that will allow users to uplo
 
     - I want to be able to quickly understand the websites purpose.
     - I want to easily navigate the site and see what content is available.
+    - I would like the site to be responsive on all devices.
     - I want to be able to quickly join so I can rate music.
     - I would like the ability to read reviews of the music uploaded.
     - I want to be able to see ratings of all the music uploaded.
@@ -59,13 +62,12 @@ This is the website for Best of Music. A community that will allow users to uplo
 
 -   ### Frequent User
 
-    - I want to be able to upload music.
+    - I want to be able to upload new artists.
     - I want to be able to see my uploaded music or reviews easily. 
-    - I would like to rate music as much as I want.
-    - I want the ability to rate albums as I see them in their rankings.
+    - I would like to rate different albums.
     - I would like the ability to read reviews of the music uploaded by different users.
-    - I want to have the option to edit my reviews.
-    - I would like the ability delete my reviews.
+    - I want to have the option to edit or delete my reviews.
+
 
 
 -   ### Site Owner Goals
@@ -85,13 +87,23 @@ This is the website for Best of Music. A community that will allow users to uplo
 
 ##  Imagery
 
+- The main imagery will be supplied from what the user uploads with the album they choose to upload.
+
+- [Fotor](https://fotor.com) Was used to create the main index page image and the navigation bar logo.
+
 
 ## Wireframes
 
--   ### Desktop view
+-   ### [Home](static/images/homewf.png)
+-   ### [Profile](static/images/profilewf.png)
+-   ### [Login](static/images/loginwf.png)
+-   ### [Upload](static/images/uploadwf.png)
+-   ### [Upload Artist](static/images/uploadartistwf.png)
+-   ### [Ranking](static/images/rankingswf.png)
+-   ### [Register](static/images/registerwf.png)
 
 
-## Features
+
 
 ###  Site Navigation
 
@@ -117,7 +129,7 @@ This is the website for Best of Music. A community that will allow users to uplo
     | Delete        | Reviews& Ratings| 
 
 
-    ###  Header  [see here](/static/images/navbar-header.png)
+    ###  Header  [see here](/static/images/navbar.png)
 
 -   ### Navigation bar
 
@@ -128,81 +140,81 @@ This is the website for Best of Music. A community that will allow users to uplo
     - Jinja if statements were used to ensure only certain navigation links are visible to registered users. Unregistered users will not have access to upload or rate.
 
 
-### Mobile [see here](/static/images/mobile.jpg)
+### Mobile [see here](/static/images/navbarmobile.png)
 
 -   ### Navigation bar
 
-    - For mobile and tablet view there is a hamburger icon which will collapses once clicked on to display the navbar menu.
+    -  Here is the mobile navigation bar users will use when they are viewing from the mobile.
 
 
-###  Log In  [see here](/static/images/log-in-img.png)
+###  Log In  [see here](/static/images/login.png)
 
 -  ### User Log In 
 
-    - Frequent users can log in to accsess additional links to leave reviews on all the latest books.
+    - The page that the users will use to login.
 
 ###  Register  [see here](/static/images/register.png)
  
--  ### Sign Up Page 
+-  ### Register Page 
 
-    -  New visitors are able to register their details by providing an email address, user name and password to create an account.
+    -  Where new users will register to get a new account.
 
-
-###  Profile  [see here](/static/images/welcome.png)  
+###  Profile  [see here](/static/images/profile.png)  
 
 -   ### User Profile  
 
-    - Registered users have access to their profile page that presents a welcome message when logged in.
+    - Returning users will return to this page where they can see their uploaded posts.
 
--   ### User Reviews
+###  Rankings  [see here](/static/images/ranking.png)
 
-    - User reviews are saved to the profile page, including book names, and the dates they were made. Users have the option to edit and delete their reviews.
+-  ### Rankings page 
 
-###  Review books  [see here](/static/images/review.png)
+    - Where users logged in or not can see the highest rated albums
 
--  ### Add Reviews 
+###  Ranking Modals  [see here](/static/images/ratingmodal.png)
 
-    - Users can add reviews by clicking on the book cover image or pressing the 'write a review' button below. Users are then taken to a page where they can fill out a form that will prompt them to enter a heading and written review. 
+-  ###  Ranking Modal info
 
-###  Read Reviews  [see here](/static/images/my-reviews.jpg)
+    - Where users can see the reviews and info of what albums are uploaded.
 
--  ### Book Reviews 
+###  Ranking Modals Ratings  [see here](/static/images/ratingmodalRated.png)
 
-    - Users can read all reviews made by registered users. 
+-  ###  Ranking Modal ratings
 
-### Edit Page  [see here](/static/images/edit-reviews.jpg)
+    - Where users can rate what albums are uploaded.
 
--  ### Edit Reviews
+### Edit Rating  [see here](/static/images/editrating.png)
 
-   - Users are able to edit and update their reviews using the submit button located at the bottom of the review form.
+-  ### Edit Reviews/Reviews
 
-### Log Out  [see here](/static/images/log-in.jpg)
+   - Users can click from their profile page to edit what they have reviewed or edited.
 
--  ### Users Logged Out
+### Log In  [see here](/static/images/logout.png)
 
-    - When a user logs out of their account a flash message is displayed that reads "You have been logged out" to inform the user they have logged out.
+- Where users will see when logged in.
 
-### Account Settings  [see here](/static/images/account-settings.jpg)
+-  ### Users Logged Out [see here](/static/images/loggedout.png)
 
--  ### User Account 
+    - Where users will see when logged out.
 
-    - All users have the option to delete their own accounts where necessary.
 
-### App banner  [see here](/static/images/app-download.png)
-
--  ### App Store 
-
-    - At the bottom of every page users will find links to download the Book Hub app.
-
-### Footer  [see here](/static/images/app-download.png)
+### Footer  [see here](/static/images/footer.png)
 
 -  ### Links 
 
     - The footer contains links to social media.
 
-    - Copyright information can be found here.    
+    - Copyright information can be found here also.    
 
-    ###  Features
+
+###  Features
+
+- Some key features of this website will allow users :
+    - Upload albums with their image, rating and review.
+    - Upload new artists to rate that artists music.
+    - Edit their own exisiting ratings or reviews.
+    - Rate albums uploaded via rankings.
+    - Delete ratings/reviews they have posted.
 
 
 ## Database Layout

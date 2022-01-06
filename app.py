@@ -330,7 +330,7 @@ def edit_rating(rating_id):
         }
         mongo.db.ratings.update_one({"_id": ObjectId(rating_id)},
                                     {'$set': submit})
-        flash("Rating Successfully Updated")
+        flash("Rating/Review Successfully Updated")
         return redirect(url_for("profile"))
         return render_template("profile.html")
 
@@ -346,7 +346,7 @@ def delete_rating(rating_id):
     """
 
     mongo.db.ratings.delete_one({"_id": ObjectId(rating_id)})
-    flash("Rating Successfully Deleted")
+    flash("Rating/Review Successfully Deleted")
     return redirect(url_for("rankings"))
 
 

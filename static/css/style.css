@@ -105,6 +105,7 @@ nav .nav-wrapper {
     padding-top: 5%;
 }
 
+
 /* Upload New Artist */
 .upload-heading {
     padding-bottom: 5%;
@@ -200,6 +201,19 @@ input[type="range"] {
     margin-right: auto;
     margin-bottom: 3%;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ Supplied from W3Schools*/
+    color: #36454F;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #36454F;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #36454F;
+  }
 
 /* Footer */
 .page-footer {
