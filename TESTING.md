@@ -72,19 +72,21 @@
 |          | "I want to easily navigate the site and see what content is available. | On entering the site <br> users can scroll down <br> to find albums. | Recent and highly rated albums can be found towards the bottom of <br> the home page | Pass |
 |          | "I want the site to be <br> responsive on all devices"| Navigate to site on laptop, <br> tablet and mobile, move <br> around the site to test for <br> responsiveness | Site responsive on all <br> devices | Pass |
 |          | "I want to be able to quickly join so I can rate music. | On entering the site <br> users can see <br> a card asking them to register | Visitors will find the register button on the navigation bar. | Pass |
-|          | "I would like the ability to read reviews of the music uploaded." | Users can see the top 3 ratetd albums and rankings in the nav bar | Pass |
-|          | "I want to be able to see ratings of all the music uploaded."
- | Ratings are posted next to the album on the index and rankings pages | Pass |
+|          | "I would like the ability to read reviews of the music uploaded." | Reviews are posted in the modals on the rankings pages | Click on the Info button on ranking to read reviews| Pass |
+|          | "I want to be able to see ratings of all the music uploaded."| Ratings are posted next to the album on the index and rankings pages | On the index and rankings pages there are ratings next to each album| Pass |
 
-|  As a <br> Returning <br> User | "I want to be able to easily login." | Users can find the login button and enter their details | Enter the desired details | Pass |
-|        | "I want to still be able to see uploaded albums." | Navigate to the rankings <br> page, click on pagination for left to right, more albums will appear | All the highest rated albums <br> can be found. <br> | Pass|
-|         | "I would like the ability to upload music." | Users can find in the <br> nav bar the UPLOAD button. | users have a variety <br> of info to enter ot upload their album | Pass |
-|         | "I would like the ability to read reviews of the music uploaded." | Users can find in the <br> info of each album on the ranking page. | Uers have a variety <br> of info to read about their album | Pass |
+| <p align="center">User Stories</p>    | <p align="center">Expectation</p>    | <p align="center">Testing </p>     | <p align="center">Results</p>  | Pass/Fail  |
+| -------------------------------       | -----------------------------       | -------------------------------    | ------------------------------ | :--------: |
+|  As a <br> Returning <br> User | "I want to be able to easily login." | Users can find the login button and enter their details | Enter the desired details and log user in | Pass |
+|        | "I want to still be able to see uploaded albums." | Navigate to the rankings <br> page, click on pagination for left to right, more albums will appear | All the highest rated albums <br> can be found. <br> | Pass |
+|         | "I would like the ability to upload music." | Users can find in the <br> nav bar the UPLOAD button. | users have a variety <br> of info to enter to upload their album | Pass |
+|         | "I would like the ability to read reviews of the music uploaded." | Users can find in the <br> info button of each album on the ranking page. Click on it and returns info. | Uers have a variety <br> of info to read about their album | Pass |
 |         | " would like to be able to edit my own ratings or reviews if I change my mind." | Users can find in their <br> profile the Edit/delete buttons. | Users Can choose <br> to delete or edit their reviews/ratings | Pass |
 
 
-
-| As a Frequent <br> User | "I want to be able to upload new artists." | User can upload new artists, <br> click the 'Upload' navbar button, then click the <br> 'Upload New Artist' button <br> And enter the info | A Flash message will <br> displays to the user <br> "Artist <br>Successfully  Added" | Pass | 
+| <p align="center">User Stories</p>    | <p align="center">Expectation</p>    | <p align="center">Testing </p>     | <p align="center">Results</p>  | Pass/Fail  |
+| -------------------------------       | -----------------------------       | -------------------------------    | ------------------------------ | :--------: |
+| As a Frequent <br> User | "I want to be able to upload new artists." | User can upload new artists, <br> click the 'Upload' navbar button, then click the 'Upload New Artist' button <br> And enter the info | A Flash message will <br> displays to the user <br> "Artist <br>Successfully  Added" | Pass | 
 |       | "I want to be able to see my uploaded albums or reviews easily.  | Navigate to profile | users can find a <br> their uploaded data to edit  | Pass
 |          | "I would like to rate different albums." | On the ranking page <br> users can pick which album <br> they would like to rate | At the bottom of each <br> modal on ranking a user can rate if they haven't done so yet | Pass |
 |          | "I would like the ability to read reviews of the music uploaded by different users." | In Rankings <br>Different reviews are in the modals by each user who has rated that album. | In Rankings Modal each users rating/review will be posted in the reviews box | Pass |
@@ -161,3 +163,5 @@ JSHint was used to validate JavaScript with no issues. [https://jshint.com/](htt
     -   Users can duplicate artists if they lowercase or uppercase certain characters.
 
     -   The Image URL validator checks for to ensure there is a  .jpg, .gif, .png but not if it is a proper image.
+
+    -   Delete Modal on Mobile isn't as responsive as desired.
