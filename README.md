@@ -5,6 +5,8 @@
 <h1>About:</h1>
 This is the website for Best of Music. A community that will allow users to upload their favourite artist/albums and rate them accordingly. Users have the ability to see which albums are more recently uploaded and the highest rated albums. Users will also be able to rate the music that is uploaded and edit their own ratings or reviews as they see fit. Best of music is designed to be responsive on all screen sizes and work across multiple devices. Ensuring it is easy for new and existing users to sign up, login, and upload their favourite albums and rate existing ones. 
 
+Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
+
 
 
 ## Contents
