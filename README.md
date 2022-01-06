@@ -86,7 +86,6 @@ Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
 - Coolors was used to get the inspiration for the color theme.
 - #b6ccfe; for the background
 - #463f3a; for the font color
-- 
 
 
 
@@ -95,7 +94,7 @@ Link found here: [Best Of Music](http://best-of-music.herokuapp.com/)
 
 -  ### Fonts
 
-- Default browser font is used.
+- Default Materalize font is used.
 
 
 ##  Imagery
@@ -411,9 +410,9 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 
 -   ### Content
 
-    -  All content was written by the developer.
+    -  All coding content was written by the developer.
 
-    - w3schools was used as a general source of knowledge.
+    - w3schools was used as a supplementary source for tips.
 
     - [Dev.io](https://dev.to/kpulkit29/custom-validation-in-materialize-css-1p0e) Was used to validate the Image URL
 
@@ -428,4 +427,4 @@ By forking the GitHub Repository we make a copy of the original repository on ou
   
 -   ### Acknowledgements
 
-    - Code Institute for their support and providing all of the necessary material.
+    - Code Institute for their support and providing all of the necessary knowledge and material.
