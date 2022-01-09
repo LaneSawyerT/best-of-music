@@ -60,14 +60,18 @@ def get_combined_data():
         count = 0
         running_total = 0
         for rating in ratings:
-            score = int(rating["rating"])
-            review = rating["review"]
-            user = rating["created_by"]
-            album_combined[index]["album"]["reviews"].append({
-                "rating": score, "review": review, "user": user})
-            running_total += score
+            try:
+                score = int(rating["rating"])
+                review = rating["review"]
+                user = rating["created_by"]
+                album_combined[index]["album"]["reviews"].append({
+                    "rating": score, "review": review, "user": user})
+                running_total += score
+            except TypeError:
+                album_combined[index]["album"]["reviews"].append({
+                    "rating": 0, "review": "", "user": ""})
             count += 1
-
+            
         try:
             average = running_total/count
         except ZeroDivisionError:
@@ -326,18 +330,19 @@ def edit_rating(rating_id):
     rating = mongo.db.ratings.find_one({"_id": ObjectId(rating_id)})
     album_details = get_album_from_rating(rating_id)
 
-    if session["user"] == rating["created_by"]:
-        submit = {
-            "rating": request.form.get("rating"),
-            "review": request.form.get("review"),
-        }
-        mongo.db.ratings.update_one({"_id": ObjectId(rating_id)},
-                                    {'$set': submit})
-        flash("Rating/Review Successfully Updated")
-        return redirect(url_for("profile"))
-    else:
-        flash("You can only edit your own ratings!")
-        return redirect(url_for("rankings"))
+    if request.method == "POST":
+        if session["user"] == rating["created_by"]: 
+            submit = {
+                "rating": request.form.get("rating"),
+                "review": request.form.get("review"),
+            }
+            mongo.db.ratings.update_one({"_id": ObjectId(rating_id)},
+                                        {'$set': submit})
+            flash("Rating/Review Successfully Updated")
+            return redirect(url_for("profile"))
+        else:
+            flash("You can only edit your own ratings!")
+            return redirect(url_for("rankings"))
 
     return render_template("edit_rating.html", rating=rating,
                            album=album_details)
